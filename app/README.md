@@ -1,27 +1,32 @@
-# App
+# Initialize App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
+## Initialize angular
+`ng new app`
 
-## Development server
+## Add official angularfire dependecy for angular
+`ng add @angular/fire`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+For documentation click [here](https://github.com/angular/angularfire)
 
-## Code scaffolding
+## Add firebase
+`firebase init`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+For documentation click [here](https://firebase.google.com/docsttps://github.com/angular/angularfire)
 
-## Build
+# Run App
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Run angular
+`cd app`
 
-## Running unit tests
+`ng serve --o` - start local angular server
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Run firebase locally
+`cd app`
 
-## Running end-to-end tests
+`npx tsc --watch` - must compile functions first
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`firebase emulators:start` - start local firebase server
 
-## Further help
+`firebase emulators:start --import ../testdata` - start local firebase server with imported test data
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`firebase emulators:export ../testdata` - export testdata
