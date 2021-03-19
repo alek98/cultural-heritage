@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cultural-heritage-c8349": {
+      "hosting": {
+        "app": [
+          "cultural-heritage-c8349"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cultural-heritage-c8349"
+  }
+}
