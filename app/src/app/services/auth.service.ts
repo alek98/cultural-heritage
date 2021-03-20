@@ -14,23 +14,23 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  user: Observable<User>;
+  user: User;
 
   constructor(
     private auth: AngularFireAuth, 
     private firestore: AngularFirestore, 
     private router: Router,
   ) {
-    this.user = this.auth.authState.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.firestore.doc<User>(`users/${user.uid}`).valueChanges();
-        }
-        else {
-          return of(null);
-        }
-      })
-    )
+    
+    this.auth.onAuthStateChanged(async user =>{
+      if(user){
+        let docRef = await this.firestore.doc<User>(`users/${user.uid}`).get().toPromise();
+        this.user = docRef.data();
+      }
+      else{
+        this.user = null;
+      }
+    })
   }
 
   async googleLogin() {

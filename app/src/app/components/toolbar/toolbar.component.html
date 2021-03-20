@@ -3,7 +3,7 @@
     <a href="/"> <span> {{title}} </span> </a>
     <span class="menu-spacer"></span>
 
-    <div *ngIf="auth.user | async as user; else login">
+    <div *ngIf="auth.user; else login">
       <button mat-button (click)="auth.logout()">Log Out</button>
     </div>
     <ng-template #login>
