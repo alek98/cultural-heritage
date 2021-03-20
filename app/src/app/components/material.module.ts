@@ -6,11 +6,15 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatButtonModule} from '@angular/material/button';
 import {RouterModule} from '@angular/router';
 import { LoginComponent } from './login/login.component'
+import {MatIconModule} from '@angular/material/icon';
+import {CommonModule} from '@angular/common'
 @NgModule({
   imports: [
     MatToolbarModule,
     MatButtonModule,
     RouterModule,
+    MatIconModule,
+    CommonModule,
   ],
   declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent]
 })

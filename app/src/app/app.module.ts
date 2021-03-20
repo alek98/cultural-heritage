@@ -14,6 +14,8 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/functions';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//auth
+import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/auth';
 
 
 @NgModule({
@@ -37,6 +39,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     {
       provide: USE_FUNCTIONS_EMULATOR,
       useValue: environment.production ? undefined : ['localhost', 5001]
+    },
+    {
+      provide: USE_AUTH_EMULATOR,
+      useValue: environment.production ? undefined : ['localhost', 9099]
     },
   ],
   bootstrap: [AppComponent]
