@@ -30,6 +30,13 @@ export class AuthService {
     })
   }
 
+  async signup(email:string, password:string, name: string){
+    let userCredential = await this.auth.createUserWithEmailAndPassword(email,password);
+    // return  userCredential.user.updateProfile({displayName: name});
+    return this.firestore.doc(`users/${userCredential.user.uid}`)
+    .set({displayName: name}, {merge: true});
+  }
+
   async googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider()
     return this.auth.signInWithPopup(provider);

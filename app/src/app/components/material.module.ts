@@ -8,6 +8,11 @@ import {RouterModule} from '@angular/router';
 import { LoginComponent } from './login/login.component'
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common'
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   imports: [
     MatToolbarModule,
@@ -15,6 +20,11 @@ import {CommonModule} from '@angular/common'
     RouterModule,
     MatIconModule,
     CommonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent]
 })
