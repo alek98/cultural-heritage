@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
 
 
   constructor(
-    public auth: AuthService,
+    private auth: AuthService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -37,14 +37,24 @@ export class SignupComponent implements OnInit {
       this.openFailSnackBar('Full Name cannot be empty');
       return;
     }
-
     try{
       await this.auth.signup(email, password, name);
       this.formState = 'sucess';
       this.openSuccessSnackBar('Account successfully created.');
       this.router.navigate(['/']);
+    }
+    catch(error) {
+      this.formState = 'fail';
+      this.openFailSnackBar(error.message);
+    }
+  }
 
-
+  async googleSignin(){
+    try{
+      await this.auth.googleLogin();
+      this.formState = 'sucess';
+      this.openSuccessSnackBar('Successfully logged in.');
+      this.router.navigate(['/']);
     }
     catch(error) {
       this.formState = 'fail';
