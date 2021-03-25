@@ -2,7 +2,19 @@
   <mat-toolbar-row>
     <a href="/"> <span> {{title}} </span> </a>
     <span class="menu-spacer"></span>
-    <button mat-button routerLink="/login">Log In</button>
-    <button mat-button routerLink="/signup">Sign Up</button>
+
+    <div *ngIf="auth.user; else login">
+      <button mat-button (click)="auth.logout()">
+        Log Out
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+    <ng-template #login>
+      <button mat-button routerLink="/login">
+        <mat-icon>login</mat-icon>
+        Log In
+      </button>
+      <button mat-button routerLink="/signup">Sign Up</button>
+    </ng-template>
   </mat-toolbar-row>
 </mat-toolbar>
