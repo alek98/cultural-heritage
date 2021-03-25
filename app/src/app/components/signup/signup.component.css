@@ -1,3 +1,12 @@
-.center{
+.form{
     text-align: center;
+    width: 250px;
+    margin: auto;
+    margin-top: 20px;
 }
+.errorBorder {
+    border:2px solid rgba(207, 13, 13, 0.507);
+}
+.blue-snackbar {
+    background-color: #2196F3 !important;
+  }
