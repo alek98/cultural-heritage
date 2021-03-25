@@ -4,12 +4,17 @@
     <span class="menu-spacer"></span>
 
     <div *ngIf="auth.user; else login">
-      <button mat-button (click)="auth.logout()">Log Out</button>
+      <button mat-button (click)="auth.logout()">
+        Log Out
+        <mat-icon>logout</mat-icon>
+      </button>
     </div>
     <ng-template #login>
-      <button mat-button routerLink="/login">Log In</button>
+      <button mat-button routerLink="/login">
+        <mat-icon>login</mat-icon>
+        Log In
+      </button>
       <button mat-button routerLink="/signup">Sign Up</button>
     </ng-template>
-
   </mat-toolbar-row>
 </mat-toolbar>
