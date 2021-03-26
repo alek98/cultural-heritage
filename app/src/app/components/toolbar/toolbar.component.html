@@ -3,6 +3,8 @@
     <a href="/"> <span> {{title}} </span> </a>
     <span class="menu-spacer"></span>
 
+    <button mat-button routerLink="/manage" >manage</button>
+
     <div *ngIf="auth.user; else login">
       <button mat-button (click)="auth.logout()">
         Log Out
