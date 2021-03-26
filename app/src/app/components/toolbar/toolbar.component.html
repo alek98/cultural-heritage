@@ -5,7 +5,7 @@
 
     <button mat-button routerLink="/manage" >manage</button>
 
-    <div *ngIf="auth.user; else login">
+    <div *ngIf="auth.user$ | async ; else login">
       <button mat-button (click)="auth.logout()">
         Log Out
         <mat-icon>logout</mat-icon>

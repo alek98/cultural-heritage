@@ -6,14 +6,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: User;
   user$: Observable<User>;
 
   constructor(
@@ -30,15 +29,6 @@ export class AuthService {
         else {return of(null)};
       })
     )
-    this.auth.onAuthStateChanged(async user => {
-      if (user) {
-        let docRef = await this.firestore.doc<User>(`users/${user.uid}`).get().toPromise();
-        this.user = docRef.data();
-      }
-      else {
-        this.user = null;
-      }
-    })
   }
 
   async signup(email: string, password: string, name: string) {
