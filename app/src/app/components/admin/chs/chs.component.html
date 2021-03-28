@@ -1,5 +1,14 @@
-<h1 style="text-align: center;">Manage Cultural Heritages</h1>
-<div>
+
+<div class="center">
+  <div>
+    <h1>Manage Cultural Heritages</h1>
+
+    <!-- TODO: ADD NEW ON CLICK -->
+    <button mat-mini-fab>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
   <table mat-table [dataSource]="culturalHeritages" class="mat-elevation-z8">
     <!-- Name Column -->
     <ng-container matColumnDef="name" class="mat-elevation-z8">

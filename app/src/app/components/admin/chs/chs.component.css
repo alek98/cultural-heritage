@@ -1,4 +1,12 @@
+.center {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 table {
-  width: 90%;
-  margin: auto
+  width: 100%;
+}
+h1{
+  text-align: center;
 }
