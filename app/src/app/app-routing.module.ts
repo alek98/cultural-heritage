@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChsComponent } from './components/admin/chs/chs.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -25,7 +26,14 @@ const routes: Routes = [
         path: 'manage',
         component: DashboardComponent,
         data: {roles: ['admin']},
-        canActivate: [RoleGuard],
+        // disabled guard for easier development
+        // canActivate: [RoleGuard],
+        children: [
+          {
+            path: 'cultural-heritage',
+            component: ChsComponent,
+          }
+        ]
       }
       
     ]

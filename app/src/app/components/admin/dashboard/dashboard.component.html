@@ -1,6 +1,10 @@
-<div class='center'>
+<router-outlet></router-outlet>
+<!-- this is parent component and 
+  will be shown only if path == 'http://localhost:4200/manage/'  -->
+  
+<div class='center' *ngIf="route.children.length === 0">
   <h1 style="text-align: center;">Dashboard</h1>
-  <mat-card routerLink="/">
+  <mat-card routerLink="cultural-heritage">
     <mat-card-title>
       <mat-icon color="primary">museum</mat-icon>
       Cultural Heritage
