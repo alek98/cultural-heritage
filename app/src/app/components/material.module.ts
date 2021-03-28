@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ChsComponent } from './admin/chs/chs.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ChsComponent } from './admin/chs/chs.component';
     ReactiveFormsModule,
     MatInputModule,
     MatSnackBarModule,
+    MatTableModule,
   ],
   declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent]
 })
