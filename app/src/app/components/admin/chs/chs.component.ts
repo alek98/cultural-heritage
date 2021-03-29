@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
 import {MatDialog} from '@angular/material/dialog';
 import { AddNewChComponent } from './add-new-ch/add-new-ch.component';
+import { CulturalHeritageService } from 'src/app/services/cultural-heritage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-chs',
@@ -27,7 +29,9 @@ export class ChsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'chtype', 'description', 'location'];
   
   constructor(
+    private culturalHeritageService: CulturalHeritageService,
     public addNewDialog: MatDialog, 
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -37,9 +41,30 @@ export class ChsComponent implements OnInit {
     const dialogRef = this.addNewDialog.open(AddNewChComponent, {
       width: '500px',
     })
-    dialogRef.afterClosed().subscribe( result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe( async result => {
+      if(result) {
+        try{
+          await this.culturalHeritageService.addNewCulturalHeritage(result);
+          this.openSuccessSnackBar(`Successfully added ${result.name}`);
+        }
+        catch(error) {
+          this.openFailSnackBar(error.message);
+        }
+      }
     })
+  }
+
+  openSuccessSnackBar(message: string): void {
+    this.snackBar.open(message, 'Dismiss', {
+      verticalPosition: 'top',
+      panelClass: ['green-snackbar'],
+      duration: 4000,
+    });
+  }
+  openFailSnackBar(message: string): void {
+    this.snackBar.open(message, 'Dismiss', {
+      verticalPosition: 'top',
+    });
   }
 
 }
