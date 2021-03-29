@@ -8,7 +8,21 @@ import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
   styleUrls: ['./add-new-ch.component.css']
 })
 export class AddNewChComponent implements OnInit {
-  newCulturalHeritage = new CulturalHeritage();
+  newCulturalHeritage : CulturalHeritage = {
+    name: '',
+    chtype: {
+      name: '',
+      description: ''
+    },
+    description: '',
+    avgRating: 0,
+    location: {
+      city: '',
+      street: '',
+      country: '',
+    },
+  }
+
   type1: chType = {
     name: 'museum',
     description: 'an institution that cares for a collection of artifacts'

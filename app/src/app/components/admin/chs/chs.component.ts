@@ -21,10 +21,6 @@ export class ChsComponent implements OnInit {
       city: 'Novi Sad',
       street: 'Zmaj Jovina',
       country: 'Serbia',
-      geopoint: {
-        latitude: 0,
-        longitude: 0,
-      }
     },
   }
   culturalHeritages = [this.ch ];

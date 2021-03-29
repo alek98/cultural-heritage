@@ -5,11 +5,13 @@
     <mat-label>name</mat-label>
     <input type="text" matInput [(ngModel)]="newCulturalHeritage.name">
   </mat-form-field>
+
   <!-- description -->
   <mat-form-field>
     <mat-label>description</mat-label>
     <input type="text" matInput [(ngModel)]="newCulturalHeritage.description">
   </mat-form-field>
+
   <!-- chtypye -->
   <mat-form-field>
     <mat-label>Choose a subtype</mat-label>
@@ -19,17 +21,34 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <!-- location -->
+
+  <p>Location</p>
+  <!-- country -->
   <mat-form-field>
-    <mat-label>location</mat-label>
-    <input type="text" matInput [(ngModel)]="newCulturalHeritage.location">
+    <mat-label>country</mat-label>
+    <input type="text" matInput [(ngModel)]="newCulturalHeritage.location.country">
+  </mat-form-field>
+  <!-- city -->
+  <mat-form-field>
+    <mat-label>city</mat-label>
+    <input type="text" matInput [(ngModel)]="newCulturalHeritage.location.city">
+  </mat-form-field>
+  <!-- street -->
+  <mat-form-field>
+    <mat-label>street</mat-label>
+    <input type="text" matInput [(ngModel)]="newCulturalHeritage.location.street">
   </mat-form-field>
 </div>
+
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-raised-button color="accent" 
-  [mat-dialog-close]="newCulturalHeritage" 
-  [disabled]="!newCulturalHeritage.name || !newCulturalHeritage.description || !newCulturalHeritage.chtype || !newCulturalHeritage.location ">
+  <button mat-button mat-raised-button color="accent" [mat-dialog-close]="newCulturalHeritage"
+    [disabled]="!newCulturalHeritage.name 
+    || !newCulturalHeritage.description
+    || !newCulturalHeritage.chtype.name 
+    || !newCulturalHeritage.location.country 
+    || !newCulturalHeritage.location.city 
+    || !newCulturalHeritage.location.street ">
     Save
   </button>
 </mat-dialog-actions>

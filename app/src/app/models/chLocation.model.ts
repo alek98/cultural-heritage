@@ -1,9 +1,5 @@
 export interface chLocation {
-  city: string,
   country: string,
+  city: string,
   street: string,
-  geopoint: {
-    latitude: number,
-    longitude: number,
-  }
 }
