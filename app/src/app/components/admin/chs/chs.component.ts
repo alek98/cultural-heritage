@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
+import {MatDialog} from '@angular/material/dialog';
+import { AddNewChComponent } from './add-new-ch/add-new-ch.component';
 
 @Component({
   selector: 'app-chs',
@@ -27,9 +29,21 @@ export class ChsComponent implements OnInit {
   }
   culturalHeritages = [this.ch ];
   displayedColumns: string[] = ['name', 'chtype', 'description', 'location'];
-  constructor() { }
+  
+  constructor(
+    public addNewDialog: MatDialog, 
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    const dialogRef = this.addNewDialog.open(AddNewChComponent, {
+      width: '500px',
+    })
+    dialogRef.afterClosed().subscribe( result => {
+      console.log(result);
+    })
   }
 
 }

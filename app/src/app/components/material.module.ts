@@ -16,6 +16,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ChsComponent } from './admin/chs/chs.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AddNewChComponent } from './admin/chs/add-new-ch/add-new-ch.component';
+import { MatSelectModule } from "@angular/material/select";
+
 
 @NgModule({
   imports: [
@@ -31,7 +35,9 @@ import {MatTableModule} from '@angular/material/table';
     MatInputModule,
     MatSnackBarModule,
     MatTableModule,
+    MatDialogModule,
+    MatSelectModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent]
 })
 export class MaterialModule {}
