@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChsComponent } from './components/admin/chs/chs.component';
+import { ChtypesComponent } from './components/admin/chtypes/chtypes.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -31,7 +32,11 @@ const routes: Routes = [
           {
             path: 'cultural-heritage',
             component: ChsComponent,
-          }
+          },
+          {
+            path: 'cultural-heritage-types',
+            component: ChtypesComponent,
+          },
         ]
       }
       

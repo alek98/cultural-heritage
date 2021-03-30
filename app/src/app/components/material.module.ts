@@ -19,6 +19,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddNewChComponent } from './admin/chs/add-new-ch/add-new-ch.component';
 import { MatSelectModule } from "@angular/material/select";
+import { ChtypesComponent } from './admin/chtypes/chtypes.component';
 
 
 @NgModule({
@@ -38,6 +39,6 @@ import { MatSelectModule } from "@angular/material/select";
     MatDialogModule,
     MatSelectModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent]
 })
 export class MaterialModule {}
