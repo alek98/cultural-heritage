@@ -20,14 +20,13 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'manage',
         component: DashboardComponent,
         data: {roles: ['admin']},
-        // disabled guard for easier development
-        // canActivate: [RoleGuard],
+        canActivate: [RoleGuard],
         children: [
           {
             path: 'cultural-heritage',
