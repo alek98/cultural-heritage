@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AddNewChComponent } from './add-new-ch/add-new-ch.component';
 import { CulturalHeritageService } from 'src/app/services/cultural-heritage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chs',
@@ -11,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./chs.component.css']
 })
 export class ChsComponent implements OnInit {
-  ch : CulturalHeritage = {
+  ch: CulturalHeritage = {
     name: 'museum of Novi Sad',
     chtype: {
       name: 'museum',
@@ -25,29 +26,31 @@ export class ChsComponent implements OnInit {
       country: 'Serbia',
     },
   }
-  culturalHeritages = [this.ch ];
+
+  culturalHeritages$: Observable<CulturalHeritage[]>;
   displayedColumns: string[] = ['name', 'chtype', 'description', 'location'];
-  
+
   constructor(
     private culturalHeritageService: CulturalHeritageService,
-    public addNewDialog: MatDialog, 
+    public addNewDialog: MatDialog,
     private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
+    this.culturalHeritages$ = this.culturalHeritageService.getCulturalHeritages();
   }
 
   openDialog() {
     const dialogRef = this.addNewDialog.open(AddNewChComponent, {
       width: '500px',
     })
-    dialogRef.afterClosed().subscribe( async result => {
-      if(result) {
-        try{
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        try {
           await this.culturalHeritageService.addNewCulturalHeritage(result);
           this.openSuccessSnackBar(`Successfully added ${result.name}`);
         }
-        catch(error) {
+        catch (error) {
           this.openFailSnackBar(error.message);
         }
       }
