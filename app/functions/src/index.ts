@@ -2,6 +2,7 @@ import * as functions from "firebase-functions";
 import * as admin from 'firebase-admin';
 import { CulturalHeritage } from "./models/culturalHeritage.model";
 import { User } from "./models/user.model";
+import { chType } from "./models/chType.model";
 admin.initializeApp();
 
 // // Start writing Firebase Functions
@@ -43,10 +44,33 @@ export const addNewCulturalHeritage = functions.https.onCall(async (ch: Cultural
   if (user.role !== 'admin') {
     throw new functions.https.HttpsError(
       'permission-denied',
-      'not authenticated as admin'
+      'not logged in as admin'
     )
   }
 
   // if authenticated as admin, add new cultural heritage
   return admin.firestore().collection('culturalHeritages').add(ch);
+})
+
+export const addNewChtype = functions.https.onCall(async (chtype: chType, context) => {
+
+  // if user is not authenticated, he/she must authenticate
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      'unauthenticated',
+      'must log in as admin'
+    )
+  }
+
+  // only admin can add new cultural heritage
+  const snapshot = await admin.firestore().collection('users').doc(context.auth.uid).get();
+  const user: User = snapshot.data() as User;
+  if (user.role !== 'admin') {
+    throw new functions.https.HttpsError(
+      'permission-denied',
+      'not logged in as admin'
+    )
+  }
+
+  return admin.firestore().collection('culturalHeritageTypes').add(chtype);
 })
