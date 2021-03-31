@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { chType } from 'src/app/models/chType.model';
 import { ChtypeService } from 'src/app/services/chtype.service';
 import { AddNewChtypeComponent } from './add-new-chtype/add-new-chtype.component';
@@ -11,11 +12,8 @@ import { AddNewChtypeComponent } from './add-new-chtype/add-new-chtype.component
   styleUrls: ['./chtypes.component.css']
 })
 export class ChtypesComponent implements OnInit {
-  chtype: chType = {
-    name: 'museum',
-    description: 'an institution that cares for a collection of artifacts'
-  }
-  chtypes = [this.chtype];
+  
+  chtypes$: Observable<chType[]>;
   displayedColumns: string[] = ['name', 'description'];
   constructor(
     private chtypeService: ChtypeService,
@@ -24,6 +22,7 @@ export class ChtypesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.chtypes$ = this.chtypeService.getChtypes();
   }
 
   openDialog() {

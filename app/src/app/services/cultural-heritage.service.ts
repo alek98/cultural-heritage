@@ -21,7 +21,8 @@ export class CulturalHeritageService {
 
   getCulturalHeritages() {
     // get items only one time
-    // let itemsCollection =await this.firestore.collection('culturalHeritages').get().toPromise();
+    // let itemsCollection =
+    // await this.firestore.collection('culturalHeritages').get().toPromise();
     // itemsCollection.forEach(doc => console.log(doc.data()))
 
     // get chs as observable

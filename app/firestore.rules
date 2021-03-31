@@ -16,7 +16,12 @@ service cloud.firestore {
 
     // everyone can read cultural heritages
     match /culturalHeritages/{document=**} {
-      allow read, write: if true;
+      allow read : if true;
+    }
+
+    // everyone can read to cultural heritage types
+    match /culturalHeritageTypes/{document=**} {
+      allow read : if true;
     }
   }
 }

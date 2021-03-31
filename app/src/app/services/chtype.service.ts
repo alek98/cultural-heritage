@@ -17,4 +17,9 @@ export class ChtypeService {
     const callable = this.fns.httpsCallable<chType>('addNewChtype');
     return callable(chtype).toPromise();
   }
+
+  getChtypes() {
+    let itemsCollection = this.firestore.collection<chType>('culturalHeritageTypes');
+    return itemsCollection.valueChanges();
+  }
 }
