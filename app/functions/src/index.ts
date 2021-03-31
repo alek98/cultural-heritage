@@ -72,5 +72,21 @@ export const addNewChtype = functions.https.onCall(async (chtype: chType, contex
     )
   }
 
+  // lower case name and description
+  chtype.name = chtype.name.toLowerCase();
+  chtype.description = chtype.description.toLowerCase();
+
+  // check if name of type is unique
+  let chtypes = await admin.firestore()
+    .collection('culturalHeritageTypes')
+    .where('name', '==', chtype.name)
+    .get();
+  if (!chtypes.empty) {
+    throw new functions.https.HttpsError(
+      'already-exists',
+      'cultural heritage type name must be unique'
+    )
+  } 
+
   return admin.firestore().collection('culturalHeritageTypes').add(chtype);
 })
