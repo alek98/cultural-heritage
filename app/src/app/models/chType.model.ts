@@ -1,4 +1,4 @@
-export class chType {
+export interface chType {
   name: string;
   description: string;
 }

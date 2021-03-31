@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Add New Cultural Heritage</h1>
+<div mat-dialog-content>
+  <!-- name -->
+  <mat-form-field>
+    <mat-label>name</mat-label>
+    <input type="text" matInput [(ngModel)]="newChtype.name">
+  </mat-form-field>
+
+  <!-- description -->
+  <mat-form-field>
+    <mat-label>description</mat-label>
+    <input type="text" matInput [(ngModel)]="newChtype.description">
+  </mat-form-field>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-raised-button color="accent" [mat-dialog-close]="newChtype"
+    [disabled]="!newChtype.name || !newChtype.description">
+    Save
+  </button>
+</mat-dialog-actions>

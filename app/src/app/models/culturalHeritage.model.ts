@@ -1,7 +1,7 @@
 import { chLocation } from "./chLocation.model";
 import { chType } from "./chType.model";
 
-export class CulturalHeritage {
+export interface CulturalHeritage {
   name: string;
   chtype: chType;
   description: string;

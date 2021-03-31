@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { chType } from 'src/app/models/chType.model';
+import { AddNewChtypeComponent } from './add-new-chtype/add-new-chtype.component';
 
 @Component({
   selector: 'app-chtypes',
@@ -13,9 +15,20 @@ export class ChtypesComponent implements OnInit {
   }
   chtypes = [this.chtype];
   displayedColumns: string[] = ['name', 'description'];
-  constructor() { }
+  constructor(
+    public addNewDialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    const dialogRef = this.addNewDialog.open(AddNewChtypeComponent, {
+      width: '500px',
+    })
+    dialogRef.afterClosed().subscribe(async result => {
+      console.log(result);
+    })
   }
 
 }
