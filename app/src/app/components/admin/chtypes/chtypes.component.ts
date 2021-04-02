@@ -15,7 +15,7 @@ import { EditChtypeComponent } from './edit-chtype/edit-chtype.component';
 export class ChtypesComponent implements OnInit {
 
   chtypes$: Observable<chType[]>;
-  displayedColumns: string[] = ['id', 'name', 'description', 'edit', 'delete'];
+  displayedColumns: string[] = ['name', 'description', 'edit', 'delete'];
   constructor(
     private chtypeService: ChtypeService,
     public addNewDialog: MatDialog,
@@ -51,7 +51,7 @@ export class ChtypesComponent implements OnInit {
       if (result) {
         try {
           await this.chtypeService.editChtype(result);
-          this.openSuccessSnackBar(`Successfully added ${result.name}`);
+          this.openSuccessSnackBar(`Successfully updated ${result.name}`);
         } catch (error) {
           this.openFailSnackBar(error.message);
         }

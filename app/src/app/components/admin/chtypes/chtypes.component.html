@@ -8,11 +8,6 @@
   </div>
 
   <table mat-table [dataSource]="chtypes$" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> id</th>
-      <td mat-cell *matCellDef="let element">{{element.id}}</td>
-    </ng-container>
-
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name</th>
       <td mat-cell *matCellDef="let element">{{element.name}}</td>
