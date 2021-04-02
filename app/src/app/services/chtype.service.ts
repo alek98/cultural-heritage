@@ -22,4 +22,9 @@ export class ChtypeService {
     let itemsCollection = this.firestore.collection<chType>('culturalHeritageTypes');
     return itemsCollection.valueChanges();
   }
+
+  editChtype (chtype: chType) {
+    const callable = this.fns.httpsCallable<chType>('editChtype');
+    return callable(chtype).toPromise();
+  }
 }

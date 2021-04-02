@@ -21,6 +21,7 @@ import { AddNewChComponent } from './admin/chs/add-new-ch/add-new-ch.component';
 import { MatSelectModule } from "@angular/material/select";
 import { ChtypesComponent } from './admin/chtypes/chtypes.component';
 import { AddNewChtypeComponent } from './admin/chtypes/add-new-chtype/add-new-chtype.component';
+import { EditChtypeComponent } from './admin/chtypes/edit-chtype/edit-chtype.component';
 
 
 @NgModule({
@@ -40,6 +41,6 @@ import { AddNewChtypeComponent } from './admin/chtypes/add-new-chtype/add-new-ch
     MatDialogModule,
     MatSelectModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent]
 })
 export class MaterialModule {}
