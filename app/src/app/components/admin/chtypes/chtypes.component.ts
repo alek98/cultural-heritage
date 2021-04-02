@@ -13,9 +13,9 @@ import { EditChtypeComponent } from './edit-chtype/edit-chtype.component';
   styleUrls: ['./chtypes.component.css']
 })
 export class ChtypesComponent implements OnInit {
-  
+
   chtypes$: Observable<chType[]>;
-  displayedColumns: string[] = ['name', 'description', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'description', 'edit', 'delete'];
   constructor(
     private chtypeService: ChtypeService,
     public addNewDialog: MatDialog,
@@ -31,10 +31,10 @@ export class ChtypesComponent implements OnInit {
       width: '500px',
     })
     dialogRef.afterClosed().subscribe(async result => {
-      if(result){
+      if (result) {
         try {
           await this.chtypeService.addNewChtype(result);
-          this.openSuccessSnackBar(`Successfully added ${result.name}`); 
+          this.openSuccessSnackBar(`Successfully added ${result.name}`);
         } catch (error) {
           this.openFailSnackBar(error.message);
         }
@@ -44,17 +44,16 @@ export class ChtypesComponent implements OnInit {
 
   openEditDialog(selected: chType) {
     const dialogRef = this.addNewDialog.open(EditChtypeComponent, {
-      data: {...selected}, // don't pass by reference. Copy object fields
+      data: { ...selected }, // don't pass by reference. Copy object fields
       width: '500px',
     })
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         try {
-          console.log(result);
-          // await this.chtypeService.
-        }
-        catch (error) {
-
+          await this.chtypeService.editChtype(result);
+          this.openSuccessSnackBar(`Successfully added ${result.name}`);
+        } catch (error) {
+          this.openFailSnackBar(error.message);
         }
       }
     })
