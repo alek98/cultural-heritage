@@ -44,7 +44,7 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
   return admin.firestore()
     .collection('culturalHeritageTypes')
     .doc(chtype.id)
-    .update({
+    .set({
       'name': chtype.name,
       'description': chtype.description
     })
@@ -56,16 +56,22 @@ export const onEditChtype = functions.firestore
     const previousValue = change.before.data() as chType;
     const newValue = change.after.data() as chType;
 
+    // get all cultural heritages with specific name
     const chs = await admin.firestore()
       .collection('culturalHeritages')
       .where('chtype.name', '==', previousValue.name)
       .get();
     
+    // create batch 
+    // batch is necessary when updating several documents in parallel
+    let batch = admin.firestore().batch();
+
     chs.forEach( chDoc => {
-      chDoc.ref.update({
-        'chtype' : newValue
-      })
+      batch.update(chDoc.ref, {'chtype' : newValue})
     })
+
+    // return write results
+    return batch.commit();
   })
 
 
