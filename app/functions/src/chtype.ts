@@ -50,6 +50,24 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
     })
 })
 
+export const onEditChtype = functions.firestore
+  .document('culturalHeritageTypes/{docId}')
+  .onUpdate(async (change, context) => {
+    const previousValue = change.before.data() as chType;
+    const newValue = change.after.data() as chType;
+
+    const chs = await admin.firestore()
+      .collection('culturalHeritages')
+      .where('chtype.name', '==', previousValue.name)
+      .get();
+    
+    chs.forEach( chDoc => {
+      chDoc.ref.update({
+        'chtype' : newValue
+      })
+    })
+  })
+
 
 async function checkPermissions(context: functions.https.CallableContext) {
   // if user is not authenticated, he/she must authenticate
