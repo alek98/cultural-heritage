@@ -40,6 +40,23 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
   chtype.name = chtype.name.toLowerCase();
   chtype.description = chtype.description.toLowerCase();
 
+  // check if name of type is unique
+  let chtypes = await admin.firestore()
+    .collection('culturalHeritageTypes')
+    .where('name', '==', chtype.name)
+    .get();
+
+  // if the document exists and doesn't have current id throw an error
+  if (!chtypes.empty) {
+    console.log('ids: ', chtype.id,  chtypes.docs[0].id);
+    console.log('name: ', chtype.name);
+    if(chtype.id !== chtypes.docs[0].id) {
+      throw new functions.https.HttpsError(
+        'already-exists',
+        'cultural heritage type name must be unique'
+      )
+    }
+  }
 
   return admin.firestore()
     .collection('culturalHeritageTypes')
@@ -56,16 +73,22 @@ export const onEditChtype = functions.firestore
     const previousValue = change.before.data() as chType;
     const newValue = change.after.data() as chType;
 
+    // get all cultural heritages with specific name
     const chs = await admin.firestore()
       .collection('culturalHeritages')
       .where('chtype.name', '==', previousValue.name)
       .get();
-    
-    chs.forEach( chDoc => {
-      chDoc.ref.update({
-        'chtype' : newValue
-      })
+
+    // create batch 
+    // batch is necessary when updating several documents in parallel
+    let batch = admin.firestore().batch();
+
+    chs.forEach(chDoc => {
+      batch.update(chDoc.ref, { 'chtype': newValue })
     })
+
+    // return write results
+    return batch.commit();
   })
 
 
