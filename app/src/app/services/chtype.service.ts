@@ -20,14 +20,14 @@ export class ChtypeService {
   }
 
   getChtypes() {
-    // let itemsCollection = this.firestore.collection<chType>('culturalHeritageTypes');
-    // return itemsCollection.valueChanges();
+    // this way I can get documentId
     let itemsCollection = this.firestore.collection<chType>('culturalHeritageTypes');
     return itemsCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as chType;
         const id = a.payload.doc.id;
-        return { id, ...data };
+        data.id = id;
+        return data;
       }))
     )
   }

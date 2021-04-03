@@ -41,12 +41,15 @@ export class ChsComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.addNewDialog.open(AddNewChComponent, {
-      width: '500px',
-    })
+    const dialogRef = this.addNewDialog
+      .open<AddNewChComponent, any, CulturalHeritage>(AddNewChComponent, {
+        width: '500px',
+      });
+
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         try {
+          delete result.chtype.id;
           await this.culturalHeritageService.addNewCulturalHeritage(result);
           this.openSuccessSnackBar(`Successfully added ${result.name}`);
         }
