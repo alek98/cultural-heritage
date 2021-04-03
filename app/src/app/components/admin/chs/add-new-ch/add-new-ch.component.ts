@@ -32,9 +32,6 @@ export class AddNewChComponent implements OnInit {
 
   ngOnInit(): void {
     this.chtypes$ = this.chtypeService.getChtypes();
-    this.chtypes$.subscribe(result => {
-      result.forEach( type => console.log(type));
-    })
   }
 
 }
