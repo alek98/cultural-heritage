@@ -44,7 +44,7 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
   return admin.firestore()
     .collection('culturalHeritageTypes')
     .doc(chtype.id)
-    .set({
+    .update({
       'name': chtype.name,
       'description': chtype.description
     })
