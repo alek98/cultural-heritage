@@ -4,24 +4,7 @@ import { User } from './models/user.model';
 import { chType } from './models/chType.model';
 
 export const addNewChtype = functions.https.onCall(async (chtype: chType, context) => {
-
-  // if user is not authenticated, he/she must authenticate
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      'unauthenticated',
-      'must log in as admin'
-    )
-  }
-
-  // only admin can add new cultural heritage type
-  const snapshot = await admin.firestore().collection('users').doc(context.auth.uid).get();
-  const user: User = snapshot.data() as User;
-  if (user.role !== 'admin') {
-    throw new functions.https.HttpsError(
-      'permission-denied',
-      'not logged in as admin'
-    )
-  }
+  await checkPermissions(context);
 
   // lower case name and description
   chtype.name = chtype.name.toLowerCase();
@@ -44,26 +27,7 @@ export const addNewChtype = functions.https.onCall(async (chtype: chType, contex
 
 
 export const editChtype = functions.https.onCall(async (chtype: chType, context) => {
-  // if user is not authenticated, he/she must authenticate
-  if (!context.auth) {
-    throw new functions.https.HttpsError(
-      'unauthenticated',
-      'must log in as admin'
-    )
-  }
-
-  // only admin can edit cultural heritage type
-  const snapshot = await admin.firestore()
-    .collection('users')
-    .doc(context.auth.uid)
-    .get();
-  const user: User = snapshot.data() as User;
-  if (user.role !== 'admin') {
-    throw new functions.https.HttpsError(
-      'permission-denied',
-      'not logged in as admin'
-    )
-  }
+  await checkPermissions(context);
 
   if (!chtype.id) {
     throw new functions.https.HttpsError(
@@ -85,3 +49,27 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
       'description': chtype.description
     })
 })
+
+
+async function checkPermissions(context: functions.https.CallableContext) {
+  // if user is not authenticated, he/she must authenticate
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      'unauthenticated',
+      'must log in as admin'
+    )
+  }
+
+  // only admin can edit cultural heritage type
+  const snapshot = await admin.firestore()
+    .collection('users')
+    .doc(context.auth.uid)
+    .get();
+  const user: User = snapshot.data() as User;
+  if (user.role !== 'admin') {
+    throw new functions.https.HttpsError(
+      'permission-denied',
+      'not logged in as admin'
+    )
+  }
+}
