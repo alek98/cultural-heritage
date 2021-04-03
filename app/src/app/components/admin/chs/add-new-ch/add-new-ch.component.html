@@ -12,11 +12,11 @@
     <input type="text" matInput [(ngModel)]="newCulturalHeritage.description">
   </mat-form-field>
 
-  <!-- chtypye -->
+  <!-- chtype -->
   <mat-form-field>
-    <mat-label>Choose a subtype</mat-label>
+    <mat-label>Choose type</mat-label>
     <mat-select [(ngModel)]="newCulturalHeritage.chtype" name="chtype">
-      <mat-option *ngFor="let type of chtypes" [value]="type">
+      <mat-option *ngFor="let type of chtypes$ | async" [value]="type">
         {{ type.name }}
       </mat-option>
     </mat-select>

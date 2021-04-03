@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { chType } from 'src/app/models/chType.model';
 import { ChtypeService } from 'src/app/services/chtype.service';
 import { AddNewChtypeComponent } from './add-new-chtype/add-new-chtype.component';
+import { EditChtypeComponent } from './edit-chtype/edit-chtype.component';
 
 @Component({
   selector: 'app-chtypes',
@@ -12,9 +13,9 @@ import { AddNewChtypeComponent } from './add-new-chtype/add-new-chtype.component
   styleUrls: ['./chtypes.component.css']
 })
 export class ChtypesComponent implements OnInit {
-  
+
   chtypes$: Observable<chType[]>;
-  displayedColumns: string[] = ['name', 'description'];
+  displayedColumns: string[] = ['name', 'description', 'edit', 'delete'];
   constructor(
     private chtypeService: ChtypeService,
     public addNewDialog: MatDialog,
@@ -30,10 +31,27 @@ export class ChtypesComponent implements OnInit {
       width: '500px',
     })
     dialogRef.afterClosed().subscribe(async result => {
-      if(result){
+      if (result) {
         try {
           await this.chtypeService.addNewChtype(result);
-          this.openSuccessSnackBar(`Successfully added ${result.name}`); 
+          this.openSuccessSnackBar(`Successfully added ${result.name}`);
+        } catch (error) {
+          this.openFailSnackBar(error.message);
+        }
+      }
+    })
+  }
+
+  openEditDialog(selected: chType) {
+    const dialogRef = this.addNewDialog.open(EditChtypeComponent, {
+      data: { ...selected }, // don't pass by reference. Copy object fields
+      width: '500px',
+    })
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        try {
+          await this.chtypeService.editChtype(result);
+          this.openSuccessSnackBar(`Successfully updated ${result.name}`);
         } catch (error) {
           this.openFailSnackBar(error.message);
         }

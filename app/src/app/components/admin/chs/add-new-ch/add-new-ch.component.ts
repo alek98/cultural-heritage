@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { chType } from 'src/app/models/chType.model';
 import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
+import { ChtypeService } from 'src/app/services/chtype.service';
 
 @Component({
   selector: 'app-add-new-ch',
@@ -8,7 +10,7 @@ import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
   styleUrls: ['./add-new-ch.component.css']
 })
 export class AddNewChComponent implements OnInit {
-  newCulturalHeritage : CulturalHeritage = {
+  newCulturalHeritage: CulturalHeritage = {
     name: '',
     chtype: {
       name: '',
@@ -22,21 +24,14 @@ export class AddNewChComponent implements OnInit {
       country: '',
     },
   }
+  chtypes$: Observable<chType[]>;
 
-  type1: chType = {
-    name: 'museum',
-    description: 'an institution that cares for a collection of artifacts'
-  }
-  type2: chType = {
-    name: 'library',
-    description: 'a collection of literary materials'
-  }
-  chtypes = [ this.type1, this.type2];
-
-
-  constructor() { }
+  constructor(
+    private chtypeService: ChtypeService,
+  ) { }
 
   ngOnInit(): void {
+    this.chtypes$ = this.chtypeService.getChtypes();
   }
 
 }
