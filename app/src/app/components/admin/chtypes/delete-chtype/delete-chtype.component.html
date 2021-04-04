@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Confirm deleting {{data.name}}. </h1>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-raised-button color="warn" [mat-dialog-close]="data">
+    Delete
+  </button>
+</mat-dialog-actions>

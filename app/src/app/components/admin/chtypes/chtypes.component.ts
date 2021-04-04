@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { chType } from 'src/app/models/chType.model';
 import { ChtypeService } from 'src/app/services/chtype.service';
 import { AddNewChtypeComponent } from './add-new-chtype/add-new-chtype.component';
+import { DeleteChtypeComponent } from './delete-chtype/delete-chtype.component';
 import { EditChtypeComponent } from './edit-chtype/edit-chtype.component';
 
 @Component({
@@ -52,6 +53,25 @@ export class ChtypesComponent implements OnInit {
         try {
           await this.chtypeService.editChtype(result);
           this.openSuccessSnackBar(`Successfully updated ${result.name}`);
+        } catch (error) {
+          this.openFailSnackBar(error.message);
+        }
+      }
+    })
+  }
+
+  openDeleteDialog(selected: chType) {
+    const dialogRef = this.addNewDialog.open(DeleteChtypeComponent, {
+      data: {...selected},
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      if(result) {
+        try {
+          console.log(result);
+          await this.chtypeService.deleteChtype(result);
+          this.openSuccessSnackBar(`Successfully deleted ${result.name}`)
         } catch (error) {
           this.openFailSnackBar(error.message);
         }
