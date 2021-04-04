@@ -36,4 +36,9 @@ export class ChtypeService {
     const callable = this.fns.httpsCallable<chType>('editChtype');
     return callable(chtype).toPromise();
   }
+
+  deleteChtype(chtype: chType) {
+    const callable = this.fns.httpsCallable<chType>('deleteChtype');
+    return callable(chtype).toPromise();
+  }
 }

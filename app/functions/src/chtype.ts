@@ -89,7 +89,48 @@ export const onEditChtype = functions.firestore
 
     // return write results
     return batch.commit();
-  })
+})
+
+export const deleteChtype = functions.https.onCall(async (chtype : chType, context) => {
+  await checkPermissions(context);
+
+  if (!chtype.id) {
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      'id was empty'
+    )
+  }
+
+  // if there are CHs containing this chtype, chtype cannot be deleted
+  const chs = await admin.firestore()
+    .collection('culturalHeritages')
+    .where('chtype.name', '==', chtype.name)
+    .get();
+  if (!chs.empty) {
+    throw new functions.https.HttpsError(
+      'aborted',
+      'chtype exists in cultural heritages.'
+    )
+  }
+
+  // check if document exists with name and id combination
+  // if not, somebody is sending modified object, throw an error
+  const chtypeDocument = await admin.firestore()
+    .collection('culturalHeritageTypes')
+    .doc(chtype.id)
+    .get();
+  if(chtypeDocument.data()?.name !== chtype.name) {
+    throw new functions.https.HttpsError(
+      'invalid-argument',
+      'name and id do not match.'
+    )
+  }
+
+  return admin.firestore()
+    .collection('culturalHeritageTypes')
+    .doc(chtype.id)
+    .delete();
+})
 
 
 async function checkPermissions(context: functions.https.CallableContext) {
