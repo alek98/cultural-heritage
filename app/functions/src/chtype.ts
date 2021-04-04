@@ -73,6 +73,14 @@ export const onEditChtype = functions.firestore
     const previousValue = change.before.data() as chType;
     const newValue = change.after.data() as chType;
 
+    // This is crucial to prevent infinite loops.
+    // By returning null we prevent infinite loop.
+    // Update only if name or description has changed.
+    if(newValue.name == previousValue.name 
+      && newValue.description == previousValue.description) {
+        return null;
+    }
+
     // get all cultural heritages with specific name
     const chs = await admin.firestore()
       .collection('culturalHeritages')
