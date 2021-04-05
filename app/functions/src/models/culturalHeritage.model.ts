@@ -7,4 +7,5 @@ export interface CulturalHeritage {
   description: string;
   avgRating: number;
   location: chLocation;
+  id?: string;
 }
