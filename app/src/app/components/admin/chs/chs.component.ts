@@ -5,6 +5,7 @@ import { AddNewChComponent } from './add-new-ch/add-new-ch.component';
 import { CulturalHeritageService } from 'src/app/services/cultural-heritage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { EditChComponent } from './edit-ch/edit-ch.component';
 
 @Component({
   selector: 'app-chs',
@@ -28,7 +29,7 @@ export class ChsComponent implements OnInit {
   }
 
   culturalHeritages$: Observable<CulturalHeritage[]>;
-  displayedColumns: string[] = ['name', 'chtype', 'description', 'location'];
+  displayedColumns: string[] = ['name', 'chtype', 'description', 'location', 'edit', 'delete'];
 
   constructor(
     private culturalHeritageService: CulturalHeritageService,
@@ -54,6 +55,26 @@ export class ChsComponent implements OnInit {
           this.openSuccessSnackBar(`Successfully added ${result.name}`);
         }
         catch (error) {
+          this.openFailSnackBar(error.message);
+        }
+      }
+    })
+  }
+
+  openEditDialog(selected: CulturalHeritage) {
+    const dialogRef = this.addNewDialog
+      .open<EditChComponent, any , CulturalHeritage>( EditChComponent, {
+        width: '500px',
+        data: {...selected, chtype: {...selected.chtype}} // deep copy object
+      });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      if(result) {
+        try {
+          delete result.chtype.id;
+          await this.culturalHeritageService.editCulturalHeritage(result);
+          this.openSuccessSnackBar(`Successfully updated ${result.name}`);
+        } catch (error) {
           this.openFailSnackBar(error.message);
         }
       }
