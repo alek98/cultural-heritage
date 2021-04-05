@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { CulturalHeritage } from '../models/culturalHeritage.model';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,15 @@ export class CulturalHeritageService {
   }
 
   getCulturalHeritages() {
-    // get items only one time
-    // let itemsCollection =
-    // await this.firestore.collection('culturalHeritages').get().toPromise();
-    // itemsCollection.forEach(doc => console.log(doc.data()))
-
-    // get chs as observable
     let itemsCollection = this.firestore.collection<CulturalHeritage>('culturalHeritages');
-    return itemsCollection.valueChanges();
+    return itemsCollection.snapshotChanges().pipe(
+      map (actions => actions.map (a => {
+        const data = a.payload.doc.data() as CulturalHeritage;
+        const id = a.payload.doc.id;
+        data.id = id;
+        return data;
+      }))
+    )
   }
 
   editCulturalHeritage(culturalHeritage: CulturalHeritage) {
