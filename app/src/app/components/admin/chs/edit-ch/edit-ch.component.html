@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Add New Cultural Heritage</h1>
+<div mat-dialog-content>
+  <!-- name -->
+  <mat-form-field>
+    <mat-label>name</mat-label>
+    <input type="text" matInput [(ngModel)]="data.name">
+  </mat-form-field>
+
+  <!-- description -->
+  <mat-form-field>
+    <mat-label>description</mat-label>
+    <input type="text" matInput [(ngModel)]="data.description">
+  </mat-form-field>
+
+  <!-- chtype -->
+  <mat-form-field>
+    <mat-label>Choose type</mat-label>
+    <mat-select [(ngModel)]="data.chtype.name">
+      <mat-option *ngFor="let type of chtypes$ | async" [value]="type.name"
+        (click)="data.chtype.description = type.description">
+        {{ type.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>Location</p>
+  <!-- country -->
+  <mat-form-field>
+    <mat-label>country</mat-label>
+    <input type="text" matInput [(ngModel)]="data.location.country">
+  </mat-form-field>
+  <!-- city -->
+  <mat-form-field>
+    <mat-label>city</mat-label>
+    <input type="text" matInput [(ngModel)]="data.location.city">
+  </mat-form-field>
+  <!-- street -->
+  <mat-form-field>
+    <mat-label>street</mat-label>
+    <input type="text" matInput [(ngModel)]="data.location.street">
+  </mat-form-field>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-raised-button color="accent" [mat-dialog-close]="data"
+    [disabled]="!data.name 
+    || !data.description
+    || !data.chtype.name 
+    || !data.location.country 
+    || !data.location.city 
+    || !data.location.street ">
+    Save
+  </button>
+</mat-dialog-actions>

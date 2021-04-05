@@ -29,4 +29,9 @@ export class CulturalHeritageService {
     let itemsCollection = this.firestore.collection<CulturalHeritage>('culturalHeritages');
     return itemsCollection.valueChanges();
   }
+
+  editCulturalHeritage(culturalHeritage: CulturalHeritage) {
+    const callable = this.fns.httpsCallable<CulturalHeritage>('editCulturalHeritage');
+    return callable(culturalHeritage).toPromise();
+  }
 }
