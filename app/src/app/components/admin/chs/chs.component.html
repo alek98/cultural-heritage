@@ -40,7 +40,7 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef> Delete </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="accent">
+        <button mat-icon-button color="accent" (click)="openDeleteDialog(element)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
