@@ -30,6 +30,22 @@ export const editCulturalHeritage = functions.https.onCall(async (ch: CulturalHe
     .update(ch);
 })
 
+export const deleteCulturalHeritage = functions.https.onCall(async (ch: CulturalHeritage, context) => {
+  await checkPermissions(context);
+
+  if(!ch.id) {
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      'id was empty'
+    )
+  }
+
+  return admin.firestore()
+    .collection('culturalHeritages')
+    .doc(ch.id)
+    .delete();
+})
+
 async function checkPermissions(context: functions.https.CallableContext) {
   // if user is not authenticated, he/she must authenticate
   if (!context.auth) {
