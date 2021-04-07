@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { News } from 'src/app/models/news.model';
+import { AddNewsComponent } from './add-news/add-news.component';
 
 @Component({
   selector: 'app-news',
@@ -16,9 +19,31 @@ export class NewsComponent implements OnInit {
   displayedColumns: string[] = ['heading', 'content', 'chName', 'edit', 'delete'];
   
   news$ = [this.dummyNews];
-  constructor() { }
+  constructor(
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  openAddDialog() {
+    const dialogRef = this.dialog.open(AddNewsComponent, {
+      width: '500px',
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        try{
+          
+          console.log(result);
+        }
+        catch (error) {
+
+        }
+      }
+    })
+
   }
 
   openEditDialog(news: News) {
@@ -29,4 +54,16 @@ export class NewsComponent implements OnInit {
 
   }
 
+  openSuccessSnackBar(message: string): void {
+    this.snackBar.open(message, 'Dismiss', {
+      verticalPosition: 'top',
+      panelClass: ['green-snackbar'],
+      duration: 4000,
+    });
+  }
+  openFailSnackBar(message: string): void {
+    this.snackBar.open(message, 'Dismiss', {
+      verticalPosition: 'top',
+    });
+  }
 }

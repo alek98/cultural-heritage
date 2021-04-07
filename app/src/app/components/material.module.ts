@@ -26,6 +26,7 @@ import { DeleteChtypeComponent } from './admin/chtypes/delete-chtype/delete-chty
 import { EditChComponent } from './admin/chs/edit-ch/edit-ch.component';
 import { DeleteChComponent } from './admin/chs/delete-ch/delete-ch.component';
 import { NewsComponent } from './admin/news/news.component';
+import { AddNewsComponent } from './admin/news/add-news/add-news.component';
 
 
 @NgModule({
@@ -45,6 +46,6 @@ import { NewsComponent } from './admin/news/news.component';
     MatDialogModule,
     MatSelectModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent]
 })
 export class MaterialModule {}
