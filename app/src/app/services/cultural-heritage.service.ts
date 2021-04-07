@@ -38,7 +38,7 @@ export class CulturalHeritageService {
   }
 
   deleteCulturalHeritage (culturalHeritage: CulturalHeritage) {
-    const callable = this.fns.httpsCallable<CulturalHeritage>('deleteCutluralHeritage');
+    const callable = this.fns.httpsCallable<CulturalHeritage>('deleteCulturalHeritage');
     return callable(culturalHeritage).toPromise();
   }
 }
