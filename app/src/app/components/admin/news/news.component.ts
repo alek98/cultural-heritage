@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { News } from 'src/app/models/news.model';
+import { NewsService } from 'src/app/services/news.service';
 import { AddNewsComponent } from './add-news/add-news.component';
 
 @Component({
@@ -20,6 +21,7 @@ export class NewsComponent implements OnInit {
   
   news$ = [this.dummyNews];
   constructor(
+    private newsService: NewsService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
   ) { }
@@ -32,14 +34,14 @@ export class NewsComponent implements OnInit {
       width: '500px',
     })
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         try{
-          
-          console.log(result);
+          await this.newsService.addNews(result);
+          this.openSuccessSnackBar(`Successfully added ${result.name}`);
         }
         catch (error) {
-
+          this.openFailSnackBar(error.message);
         }
       }
     })
