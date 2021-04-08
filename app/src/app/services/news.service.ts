@@ -35,4 +35,9 @@ export class NewsService {
     const callable = this.fns.httpsCallable<News>('editNews');
     return callable(news).toPromise();
   }
+
+  deleteNews(news: News) {
+    const callable = this.fns.httpsCallable<News>('deleteNews');
+    return callable(news).toPromise();
+  }
 }

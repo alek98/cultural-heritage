@@ -28,6 +28,7 @@ import { DeleteChComponent } from './admin/chs/delete-ch/delete-ch.component';
 import { NewsComponent } from './admin/news/news.component';
 import { AddNewsComponent } from './admin/news/add-news/add-news.component';
 import { EditNewsComponent } from './admin/news/edit-news/edit-news.component';
+import { DeleteNewsComponent } from './admin/news/delete-news/delete-news.component';
 
 
 @NgModule({
@@ -47,6 +48,6 @@ import { EditNewsComponent } from './admin/news/edit-news/edit-news.component';
     MatDialogModule,
     MatSelectModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent]
 })
 export class MaterialModule {}

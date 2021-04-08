@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { News } from 'src/app/models/news.model';
 import { NewsService } from 'src/app/services/news.service';
 import { AddNewsComponent } from './add-news/add-news.component';
+import { DeleteNewsComponent } from './delete-news/delete-news.component';
 import { EditNewsComponent } from './edit-news/edit-news.component';
 
 @Component({
@@ -73,8 +74,22 @@ export class NewsComponent implements OnInit {
     })
   }
 
-  openDeleteDialog(news: News) {
+  openDeleteDialog(selected: News) {
+    const dialogRef = this.dialog.open(DeleteNewsComponent, {
+      width: '500px',
+      data: {...selected}
+    })
 
+    dialogRef.afterClosed().subscribe(async result => {
+      if(result) {
+        try {
+          await this.newsService.deleteNews(result);
+          this.openSuccessSnackBar(`Successfully deleted ${result.heading}`);
+        } catch (error) {
+          this.openFailSnackBar(error.message);
+        }
+      }
+    })
   }
 
   openSuccessSnackBar(message: string): void {
