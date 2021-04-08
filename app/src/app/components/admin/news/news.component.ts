@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { News } from 'src/app/models/news.model';
 import { NewsService } from 'src/app/services/news.service';
 import { AddNewsComponent } from './add-news/add-news.component';
+import { EditNewsComponent } from './edit-news/edit-news.component';
 
 @Component({
   selector: 'app-news',
@@ -51,8 +52,18 @@ export class NewsComponent implements OnInit {
 
   }
 
-  openEditDialog(news: News) {
+  openEditDialog(selected: News) {
+    const dialogRef = this.dialog
+      .open<EditNewsComponent, any, News>(EditNewsComponent, {
+        width: '500px',
+        data: {...selected}
+    })
 
+    dialogRef.afterClosed().subscribe(async result => {
+      if(result){
+        console.log(result);
+      }
+    })
   }
 
   openDeleteDialog(news: News) {
