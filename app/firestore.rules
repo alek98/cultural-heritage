@@ -5,13 +5,28 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    //only logged in user can change hi's document in the firestore
+    //only logged in user can change his/her document in the firestore
     match /users/{userId} {
       allow read, write: if isOwner(userId);
     }
 
     function isOwner(userId){
       return request.auth.uid == userId;
+    }
+
+    // everyone can read cultural heritages
+    match /culturalHeritages/{document=**} {
+      allow read : if true;
+    }
+
+    // everyone can read to cultural heritage types
+    match /culturalHeritageTypes/{document=**} {
+      allow read : if true;
+    }
+
+    // everyone can read news
+    match /news/{document=**} {
+      allow read : if true;
     }
   }
 }

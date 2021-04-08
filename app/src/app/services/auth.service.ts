@@ -5,13 +5,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: User;
+  user$: Observable<User>;
 
   constructor(
     private auth: AngularFireAuth,
@@ -19,15 +21,14 @@ export class AuthService {
     private router: Router,
   ) {
 
-    this.auth.onAuthStateChanged(async user => {
-      if (user) {
-        let docRef = await this.firestore.doc<User>(`users/${user.uid}`).get().toPromise();
-        this.user = docRef.data();
-      }
-      else {
-        this.user = null;
-      }
-    })
+    this.user$ = this.auth.authState.pipe(
+      switchMap( user => {
+        if(user){
+          return this.firestore.doc<User>(`users/${user.uid}`).valueChanges();
+        }
+        else {return of(null)};
+      })
+    )
   }
 
   async signup(email: string, password: string, name: string) {
@@ -36,7 +37,6 @@ export class AuthService {
     return this.firestore.doc(`users/${userCredential.user.uid}`)
       .set({ displayName: name }, { merge: true });
   }
-
   async login(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
@@ -44,7 +44,6 @@ export class AuthService {
     const provider = new firebase.auth.GoogleAuthProvider()
     return this.auth.signInWithPopup(provider);
   }
-
   logout() {
     this.auth.signOut();
     return this.router.navigate(['/']);

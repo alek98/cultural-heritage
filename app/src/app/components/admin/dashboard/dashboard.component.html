@@ -1,0 +1,51 @@
+<router-outlet></router-outlet>
+<!-- this is parent component and 
+  will be shown only if path == 'http://localhost:4200/manage/'  -->
+  
+<div class='center' *ngIf="route.children.length === 0">
+  <h1 style="text-align: center;">Dashboard</h1>
+  <mat-card routerLink="cultural-heritage">
+    <mat-card-title>
+      <mat-icon color="primary">museum</mat-icon>
+      Cultural Heritage
+    </mat-card-title>
+    <mat-card-subtitle>
+      Manage Cultural Heritages
+    </mat-card-subtitle>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab>
+        <mat-icon>east</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card routerLink="cultural-heritage-types">
+    <mat-card-title>
+      <mat-icon color="primary">holiday_village</mat-icon>
+      Cultural Heritage Types
+    </mat-card-title>
+    <mat-card-subtitle>
+      Manage Types of Cultural Heritage
+    </mat-card-subtitle>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab>
+        <mat-icon>east</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card routerLink="news">
+    <mat-card-title>
+      <mat-icon color="primary">feed</mat-icon>
+      News
+    </mat-card-title>
+    <mat-card-subtitle>
+      Manage News for Cultural Heritage
+    </mat-card-subtitle>
+    <mat-card-actions align='end'>
+      <button mat-mini-fab>
+        <mat-icon>east</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

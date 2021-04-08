@@ -1,0 +1,13 @@
+.mat-card {
+  margin: 20px; 
+  background-color:#f0efefea;
+}
+.center{
+  margin: auto;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  width: 600px;
+}
+.mat-card-title .mat-icon{
+  padding-right: 10px;
+}
