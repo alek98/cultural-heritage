@@ -35,3 +35,19 @@ export const editNews = functions.https.onCall(async (news: News, context) => {
       lastModifiedAt: admin.firestore.FieldValue.serverTimestamp()
     });
 })
+
+export const deleteNews = functions.https.onCall(async (news: News, context) => {
+  await checkPermissions(context);
+
+  if(!news.id) {
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      'id was empty'
+    )
+  }
+
+  return admin.firestore()
+    .collection('news')
+    .doc(news.id)
+    .delete()
+})
