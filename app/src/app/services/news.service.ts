@@ -20,7 +20,11 @@ export class NewsService {
   }
 
   getNews() {
-    const itemsCollection = this.firestore.collection<News>('news');
+    // sorting collection by last modified date
+    // showing the last modified news first
+    const itemsCollection = this.firestore.collection<News>('news', 
+      ref => ref.orderBy('lastModifiedAt', 'desc'));
+
     return itemsCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as News;
