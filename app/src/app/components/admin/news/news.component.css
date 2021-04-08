@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding-top: 10px;
   padding-bottom: 10px;
+  min-width: 500px;
 }
 table {
   width: 100%;
