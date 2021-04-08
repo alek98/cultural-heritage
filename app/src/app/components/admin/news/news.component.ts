@@ -62,7 +62,6 @@ export class NewsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async result => {
       if(result){
-        console.log(result);
         try{
           await this.newsService.editNews(result);
           this.openSuccessSnackBar(`Successfully updated ${result.heading}`);
