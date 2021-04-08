@@ -19,7 +19,7 @@ export class NewsComponent implements OnInit {
     content: 'his complex exemplifies the outstanding universal values upheld by UNESCO.',
     chName: 'Mont-Saint-Michel'
   }
-  displayedColumns: string[] = ['heading', 'content', 'chName', 'edit', 'delete'];
+  displayedColumns: string[] = ['heading', 'content', 'chName', 'lastModified', 'edit', 'delete'];
   
   news$: Observable<News[]>;
 
