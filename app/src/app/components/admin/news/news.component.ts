@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { News } from 'src/app/models/news.model';
 import { NewsService } from 'src/app/services/news.service';
 import { AddNewsComponent } from './add-news/add-news.component';
@@ -19,7 +20,8 @@ export class NewsComponent implements OnInit {
   }
   displayedColumns: string[] = ['heading', 'content', 'chName', 'edit', 'delete'];
   
-  news$ = [this.dummyNews];
+  news$: Observable<News[]>;
+
   constructor(
     private newsService: NewsService,
     public dialog: MatDialog,
@@ -27,6 +29,7 @@ export class NewsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.news$ = this.newsService.getNews();
   }
 
   openAddDialog() {

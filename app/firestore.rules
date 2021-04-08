@@ -23,5 +23,10 @@ service cloud.firestore {
     match /culturalHeritageTypes/{document=**} {
       allow read : if true;
     }
+
+    // everyone can read news
+    match /news/{document=**} {
+      allow read : if true;
+    }
   }
 }
