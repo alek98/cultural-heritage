@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Edit News</h1>
+<div mat-dialog-content>
+  <!-- heading -->
+  <mat-form-field>
+    <mat-label>heading</mat-label>
+    <input type="text" matInput [(ngModel)]="data.heading">
+  </mat-form-field>
+
+  <!-- content -->
+  <mat-form-field  appearance="fill">
+    <mat-label>content</mat-label>
+    <textarea matInput [(ngModel)]="data.content"></textarea>
+  </mat-form-field>
+
+  <!-- chName -->
+  <mat-form-field appearance="fill">
+    <mat-label>Choose Cultural Heritage</mat-label>
+    <mat-select [(ngModel)]="data.chName">
+      <mat-option *ngFor="let ch of culturalHeritages$ | async" [value]="ch.name">
+        {{ ch.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-raised-button color="accent" [mat-dialog-close]="data"
+    [disabled]="!data.heading || !data.content || !data.chName">
+    Save
+  </button>
+</mat-dialog-actions>

@@ -10,3 +10,4 @@ admin.initializeApp();
 export * from './users'
 export * from './cultural-heritage'
 export * from './chtype'
+export * from './news'

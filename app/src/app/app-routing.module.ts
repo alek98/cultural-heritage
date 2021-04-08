@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChsComponent } from './components/admin/chs/chs.component';
 import { ChtypesComponent } from './components/admin/chtypes/chtypes.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { NewsComponent } from './components/admin/news/news.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
             path: 'cultural-heritage-types',
             component: ChtypesComponent,
           },
+          {
+            path: 'news',
+            component: NewsComponent,
+          }
         ]
       }
       
