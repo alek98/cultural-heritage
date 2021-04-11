@@ -11,11 +11,16 @@ export class GridLayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 600) ? 2 : 4;
+    this.breakpoint = this.getColumns();
   }
 
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 600) ? 2 : 4;
+    this.breakpoint = this.getColumns();
+  }
+
+  getColumns(){
+    if(window.innerWidth < 800 ) return 2;
+    else return 3;
   }
 
 }
