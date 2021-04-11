@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" [ngClass]="{'transparent' : route.children.length === 0}">
   <mat-toolbar-row>
     <a href="/"> <span> {{title}} </span> </a>
     <span class="menu-spacer"></span>
