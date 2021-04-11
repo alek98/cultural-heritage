@@ -3,6 +3,8 @@ mat-grid-tile {
 }
 
 .main {
+  max-width: 1200px;
+  margin: auto ;
   margin-top: -12rem;
   background-color: rgb(173, 216, 230, 0.5);
 }
