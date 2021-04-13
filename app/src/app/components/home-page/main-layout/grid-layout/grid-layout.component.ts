@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
+import { CulturalHeritageService } from 'src/app/services/cultural-heritage.service';
 
 @Component({
   selector: 'app-grid-layout',
@@ -7,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GridLayoutComponent implements OnInit {
   breakpoint: number;
+  culturalHeritages$: Observable<CulturalHeritage[]>;
 
-  constructor() { }
+  constructor(
+    private culturalHeritageService: CulturalHeritageService,
+  ) { }
 
   ngOnInit() {
+    this.culturalHeritages$ = this.culturalHeritageService.getCulturalHeritages();
     this.breakpoint = this.getColumns();
   }
 

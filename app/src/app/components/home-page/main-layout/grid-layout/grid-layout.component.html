@@ -1,206 +1,37 @@
 <div class="main">
 
-  <!-- https://material.angular.io/components/grid-list/overview -->
-  <mat-grid-list [cols]="breakpoint" rowHeight="3:2" (window:resize)="onResize($event)">
-    <mat-grid-tile>
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title>
-            Name
-          </mat-card-title>
-          <mat-card-subtitle>
-            4.5
-            <mat-icon style="font-size: 15px;">star</mat-icon>
-          </mat-card-subtitle>
-          
-          <span class="menu-spacer"></span>
-          <mat-icon>museum</mat-icon>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <div>
-            <div class="location-chip"> Serbia, Novi Sad </div>
-            <div class="chtype-chip"> National Park</div>
+  <div class="ch-card" *ngFor="let ch of culturalHeritages$ | async">
+    <mat-card class="mat-elevation-z8">
+      <mat-card-header>
+        <mat-card-title>
+          <h1>{{ch.name}}</h1>
+        </mat-card-title>
+        <span class="menu-spacer"></span>
+        <mat-icon>museum</mat-icon>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="description">
+          {{ch.description}}
+        </div>
+
+        <div class="footer">
+          <div class="rating">
+            {{ch.avgRating}}
+            <mat-icon class="stars">star</mat-icon>
           </div>
-        </mat-card-content>
-
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title>
-            Name
-          </mat-card-title>
-          <mat-card-subtitle>
-            4.5
-            <mat-icon style="font-size: 15px;">star</mat-icon>
-          </mat-card-subtitle>
-          
-          <span class="menu-spacer"></span>
-          <mat-icon>museum</mat-icon>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <div>
-            <div class="location-chip"> Serbia, Novi Sad </div>
-            <div class="chtype-chip"> National Park</div>
+          <div class="location-chip">
+            {{ch.location.country}}, {{ch.location.city}}
           </div>
-        </mat-card-content>
-
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title>
-            Name
-          </mat-card-title>
-          <mat-card-subtitle>
-            4.5
-            <mat-icon style="font-size: 15px;">star</mat-icon>
-          </mat-card-subtitle>
-          
-          <span class="menu-spacer"></span>
-          <mat-icon>museum</mat-icon>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <div>
-            <div class="location-chip"> Serbia, Novi Sad </div>
-            <div class="chtype-chip"> National Park</div>
+          <div class="chtype-chip">
+            {{ch.chtype.name}}
           </div>
-        </mat-card-content>
+        </div>
 
-      </mat-card>
-    </mat-grid-tile>
+      </mat-card-content>
 
-    <mat-grid-tile>
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title>
-            Name
-          </mat-card-title>
-          <mat-card-subtitle>
-            4.5
-            <mat-icon style="font-size: 15px;">star</mat-icon>
-          </mat-card-subtitle>
-          
-          <span class="menu-spacer"></span>
-          <mat-icon>museum</mat-icon>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <div>
-            <div class="location-chip"> Serbia, Novi Sad </div>
-            <div class="chtype-chip"> National Park</div>
-          </div>
-        </mat-card-content>
+    </mat-card>
+  </div>
 
-      </mat-card>
-    </mat-grid-tile>
 
-    <mat-grid-tile>
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title>
-            Name
-          </mat-card-title>
-          <mat-card-subtitle>
-            4.5
-            <mat-icon style="font-size: 15px;">star</mat-icon>
-          </mat-card-subtitle>
-          
-          <span class="menu-spacer"></span>
-          <mat-icon>museum</mat-icon>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <div>
-            <div class="location-chip"> Serbia, Novi Sad </div>
-            <div class="chtype-chip"> National Park</div>
-          </div>
-        </mat-card-content>
-
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title>
-            Name
-          </mat-card-title>
-          <mat-card-subtitle>
-            4.5
-            <mat-icon style="font-size: 15px;">star</mat-icon>
-          </mat-card-subtitle>
-          
-          <span class="menu-spacer"></span>
-          <mat-icon>museum</mat-icon>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <div>
-            <div class="location-chip"> Serbia, Novi Sad </div>
-            <div class="chtype-chip"> National Park</div>
-          </div>
-        </mat-card-content>
-
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title>
-            Name
-          </mat-card-title>
-          <mat-card-subtitle>
-            4.5
-            <mat-icon style="font-size: 15px;">star</mat-icon>
-          </mat-card-subtitle>
-          
-          <span class="menu-spacer"></span>
-          <mat-icon>museum</mat-icon>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <div>
-            <div class="location-chip"> Serbia, Novi Sad </div>
-            <div class="chtype-chip"> National Park</div>
-          </div>
-        </mat-card-content>
-
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title>
-            Name
-          </mat-card-title>
-          <mat-card-subtitle>
-            4.5
-            <mat-icon style="font-size: 15px;">star</mat-icon>
-          </mat-card-subtitle>
-          
-          <span class="menu-spacer"></span>
-          <mat-icon>museum</mat-icon>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <div>
-            <div class="location-chip"> Serbia, Novi Sad </div>
-            <div class="chtype-chip"> National Park</div>
-          </div>
-        </mat-card-content>
-
-      </mat-card>
-    </mat-grid-tile>
-
-  </mat-grid-list>
 </div>
-
