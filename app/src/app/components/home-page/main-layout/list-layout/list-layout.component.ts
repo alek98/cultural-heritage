@@ -4,30 +4,19 @@ import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
 import { CulturalHeritageService } from 'src/app/services/cultural-heritage.service';
 
 @Component({
-  selector: 'app-grid-layout',
-  templateUrl: './grid-layout.component.html',
-  styleUrls: ['./grid-layout.component.css']
+  selector: 'app-list-layout',
+  templateUrl: './list-layout.component.html',
+  styleUrls: ['./list-layout.component.css']
 })
-export class GridLayoutComponent implements OnInit {
-  breakpoint: number;
+export class ListLayoutComponent implements OnInit {
   culturalHeritages$: Observable<CulturalHeritage[]>;
 
   constructor(
     private culturalHeritageService: CulturalHeritageService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.culturalHeritages$ = this.culturalHeritageService.getCulturalHeritages();
-    this.breakpoint = this.getColumns();
-  }
-
-  onResize(event) {
-    this.breakpoint = this.getColumns();
-  }
-
-  getColumns(){
-    if(window.innerWidth < 800 ) return 2;
-    else return 3;
   }
 
 }

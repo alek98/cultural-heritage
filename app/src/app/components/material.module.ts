@@ -30,8 +30,9 @@ import { AddNewsComponent } from './admin/news/add-news/add-news.component';
 import { EditNewsComponent } from './admin/news/edit-news/edit-news.component';
 import { DeleteNewsComponent } from './admin/news/delete-news/delete-news.component';
 import { MainLayoutComponent } from './home-page/main-layout/main-layout.component';
-import { GridLayoutComponent } from './home-page/main-layout/grid-layout/grid-layout.component';
+
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ListLayoutComponent } from './home-page/main-layout/list-layout/list-layout.component';
 
 @NgModule({
   imports: [
@@ -51,6 +52,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatSelectModule,
     MatGridListModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, GridLayoutComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent]
 })
 export class MaterialModule {}
