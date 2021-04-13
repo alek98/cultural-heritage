@@ -37,8 +37,13 @@
 }
 .stars {
   vertical-align: middle;
-  color:#f3cc60;
+  /* color:#f3cc60; */
   font-size: 20px;
+}
+.mat-icon {
+  background: linear-gradient(to right, gold 50%, silver 50%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 .location-chip {
   background-color: #ecf0b3;

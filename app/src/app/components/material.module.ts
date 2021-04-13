@@ -33,6 +33,7 @@ import { MainLayoutComponent } from './home-page/main-layout/main-layout.compone
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ListLayoutComponent } from './home-page/main-layout/list-layout/list-layout.component';
+import { RatingComponent } from './home-page/main-layout/rating/rating.component';
 
 @NgModule({
   imports: [
@@ -52,6 +53,6 @@ import { ListLayoutComponent } from './home-page/main-layout/list-layout/list-la
     MatSelectModule,
     MatGridListModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent, RatingComponent]
 })
 export class MaterialModule {}
