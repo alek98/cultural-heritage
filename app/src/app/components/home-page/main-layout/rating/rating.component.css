@@ -1,0 +1,45 @@
+.star1 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+}
+.star2 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+}
+.star3 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+}
+.star4 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+}
+.star5 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+}
