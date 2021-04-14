@@ -10,6 +10,9 @@ export class RatingComponent implements AfterViewInit {
   @Input()
   value: number = 0;
 
+  @Input()
+  starSize: number = 22;
+
   @ViewChild('star1', { read: ElementRef })
   star1: ElementRef<HTMLElement>;
 
@@ -34,7 +37,9 @@ export class RatingComponent implements AfterViewInit {
   constructor(
     //rendere2 should be used when working with server side rendering
     //here we don't have to use it
-    private renderer: Renderer2) { }
+    private renderer: Renderer2,
+    private el: ElementRef<HTMLElement>,
+    ) { }
 
   ngAfterViewInit() {
     // populate list of stars
@@ -45,6 +50,9 @@ export class RatingComponent implements AfterViewInit {
 
     // fill stars with color
     this.fillStars(integer, remainder);
+
+    // set star size in px
+    this.setStarsSize();
 
   }
 
@@ -64,6 +72,10 @@ export class RatingComponent implements AfterViewInit {
   fill(star: ElementRef<HTMLElement>, percentage: number) {
     star.nativeElement.style.setProperty('--fill', `${percentage}%`);
     // this.star1.nativeElement.style.setProperty('--fill', '60%');
+  }
+
+  setStarsSize() {
+    this.el.nativeElement.style.setProperty('--starSize', `${this.starSize}px`)
   }
 
 }
