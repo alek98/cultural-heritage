@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { chType } from 'src/app/models/chType.model';
 import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
@@ -25,6 +26,10 @@ export class AddNewChComponent implements OnInit {
     },
   }
   chtypes$: Observable<chType[]>;
+
+  descriptionFormControl = new FormControl('', [
+    Validators.maxLength(700),
+  ]);
 
   constructor(
     private chtypeService: ChtypeService,

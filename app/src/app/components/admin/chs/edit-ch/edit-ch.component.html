@@ -9,7 +9,18 @@
   <!-- description -->
   <mat-form-field>
     <mat-label>description</mat-label>
-    <input type="text" autocomplete="off" matInput [(ngModel)]="data.description">
+    <textarea 
+    type="text" 
+    autocomplete="off" 
+    [formControl]="descriptionFormControl" 
+    matInput 
+    [(ngModel)]="data.description">
+    </textarea>
+
+    <!-- description errors -->
+    <mat-error>
+      You have exceeded maximum number of characters (700)
+    </mat-error>
   </mat-form-field>
 
   <!-- chtype -->
@@ -49,7 +60,8 @@
     || !data.chtype.name 
     || !data.location.country 
     || !data.location.city 
-    || !data.location.street ">
+    || !data.location.street 
+    || descriptionFormControl.hasError('maxlength')">
     Save
   </button>
 </mat-dialog-actions>

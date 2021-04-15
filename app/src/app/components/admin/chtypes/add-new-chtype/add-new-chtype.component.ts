@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { chType } from 'src/app/models/chType.model';
 
 @Component({
@@ -11,6 +12,10 @@ export class AddNewChtypeComponent implements OnInit {
     name: '',
     description: '',
   }
+
+  descriptionFormControl = new FormControl('', [
+    Validators.maxLength(100),
+  ]);
   constructor() { }
 
   ngOnInit(): void {
