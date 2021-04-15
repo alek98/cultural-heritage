@@ -9,14 +9,20 @@
   <!-- description -->
   <mat-form-field>
     <mat-label>description</mat-label>
-    <input type="text" autocomplete="off" matInput [(ngModel)]="newChtype.description">
+    <input type="text" autocomplete="off" [formControl]="descriptionFormControl" matInput
+    [(ngModel)]="newChtype.description">
+
+    <!-- description errors -->
+    <mat-error>
+      You have exceeded maximum number of characters (100)
+    </mat-error>
   </mat-form-field>
 </div>
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button mat-raised-button color="accent" [mat-dialog-close]="newChtype"
-    [disabled]="!newChtype.name || !newChtype.description">
+    [disabled]="!newChtype.name || !newChtype.description || descriptionFormControl.hasError('maxlength')">
     Save
   </button>
 </mat-dialog-actions>
