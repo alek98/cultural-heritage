@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { chType } from 'src/app/models/chType.model';
@@ -12,6 +13,10 @@ import { ChtypeService } from 'src/app/services/chtype.service';
 export class EditChComponent implements OnInit {
 
   chtypes$: Observable<chType[]>;
+
+  descriptionFormControl = new FormControl('', [
+    Validators.maxLength(700),
+  ]);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: CulturalHeritage,
