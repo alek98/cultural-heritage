@@ -3,13 +3,13 @@
   <!-- name -->
   <mat-form-field>
     <mat-label>name</mat-label>
-    <input type="text" matInput [(ngModel)]="newCulturalHeritage.name">
+    <input type="text" autocomplete="off"  matInput [(ngModel)]="newCulturalHeritage.name">
   </mat-form-field>
 
   <!-- description -->
   <mat-form-field>
     <mat-label>description</mat-label>
-    <input type="text" matInput [(ngModel)]="newCulturalHeritage.description">
+    <input type="text" autocomplete="off" matInput [(ngModel)]="newCulturalHeritage.description">
   </mat-form-field>
 
   <!-- chtype -->
@@ -26,17 +26,17 @@
   <!-- country -->
   <mat-form-field>
     <mat-label>country</mat-label>
-    <input type="text" matInput [(ngModel)]="newCulturalHeritage.location.country">
+    <input type="text" autocomplete="off" name="country" matInput [(ngModel)]="newCulturalHeritage.location.country">
   </mat-form-field>
   <!-- city -->
   <mat-form-field>
     <mat-label>city</mat-label>
-    <input type="text" matInput [(ngModel)]="newCulturalHeritage.location.city">
+    <input type="text" autocomplete="off" name="city" matInput [(ngModel)]="newCulturalHeritage.location.city">
   </mat-form-field>
   <!-- street -->
   <mat-form-field>
     <mat-label>street</mat-label>
-    <input type="text" matInput [(ngModel)]="newCulturalHeritage.location.street">
+    <input type="text" autocomplete="off" name="street" matInput [(ngModel)]="newCulturalHeritage.location.street">
   </mat-form-field>
 </div>
 
