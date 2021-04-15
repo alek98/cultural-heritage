@@ -11,3 +11,8 @@ a {
   cursor: pointer;
 }
 
+.transparent {
+  background:linear-gradient(to top, rgba(0,0,0,.0) 10%, rgba(0,0,0,0.2));
+  position: absolute;
+  color: rgb(238, 238, 238);
+}

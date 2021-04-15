@@ -1,0 +1,51 @@
+:host {
+  --starSize: 22px;
+  display: inline-block;
+  min-width: var(--starSize);
+  min-height: var(--starSize);
+}
+.star1 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: var(--starSize);
+  height: var(--starSize);
+  font-size: var(--starSize);
+}
+.star2 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: var(--starSize);
+  height: var(--starSize);
+  font-size: var(--starSize);
+}
+.star3 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: var(--starSize);
+  height: var(--starSize);
+  font-size: var(--starSize);
+}
+.star4 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: var(--starSize);
+  height: var(--starSize);
+  font-size: var(--starSize);
+}
+.star5 {
+  --fill: 0%;
+  background: linear-gradient(to right, gold var(--fill), silver 0%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  width: var(--starSize);
+  height: var(--starSize);
+  font-size: var(--starSize);
+}
