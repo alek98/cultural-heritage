@@ -3,13 +3,13 @@
   <!-- name -->
   <mat-form-field>
     <mat-label>name</mat-label>
-    <input type="text" matInput [(ngModel)]="data.name">
+    <input type="text" autocomplete="off" matInput [(ngModel)]="data.name">
   </mat-form-field>
 
   <!-- description -->
   <mat-form-field>
     <mat-label>description</mat-label>
-    <input type="text" matInput [(ngModel)]="data.description">
+    <input type="text" autocomplete="off" matInput [(ngModel)]="data.description">
   </mat-form-field>
 
   <!-- chtype -->
@@ -27,17 +27,17 @@
   <!-- country -->
   <mat-form-field>
     <mat-label>country</mat-label>
-    <input type="text" matInput [(ngModel)]="data.location.country">
+    <input type="text" autocomplete="off" name="country" matInput [(ngModel)]="data.location.country">
   </mat-form-field>
   <!-- city -->
   <mat-form-field>
     <mat-label>city</mat-label>
-    <input type="text" matInput [(ngModel)]="data.location.city">
+    <input type="text" autocomplete="off" name="city" matInput [(ngModel)]="data.location.city">
   </mat-form-field>
   <!-- street -->
   <mat-form-field>
     <mat-label>street</mat-label>
-    <input type="text" matInput [(ngModel)]="data.location.street">
+    <input type="text" autocomplete="off" name="street" matInput [(ngModel)]="data.location.street">
   </mat-form-field>
 </div>
 
