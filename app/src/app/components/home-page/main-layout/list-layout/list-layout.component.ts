@@ -28,6 +28,7 @@ export class ListLayoutComponent implements OnInit {
   openReviews(selected: CulturalHeritage) {
     const dialogRef = this.reviewsDialog.open( ReviewListComponent, {
       maxWidth: '90%',
+      maxHeight: '90vh',
       data: selected
     })
   }

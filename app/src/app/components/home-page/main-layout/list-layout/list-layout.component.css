@@ -35,9 +35,6 @@
 
 }
 .reviews:hover {
-  /* border-radius: 5px;
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); */
   cursor: pointer;
 }
 .rating {
