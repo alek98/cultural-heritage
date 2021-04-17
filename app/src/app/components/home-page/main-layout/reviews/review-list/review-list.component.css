@@ -2,7 +2,7 @@
   flex: 1 1 auto;
 }
 .mat-card {
-  width: 600px;
+  max-width: 600px;
 }
 .review {
   padding-top: 10px;

@@ -36,6 +36,7 @@ import { ListLayoutComponent } from './home-page/main-layout/list-layout/list-la
 import { RatingComponent } from './home-page/main-layout/rating/rating.component';
 import { ReviewListComponent } from './home-page/main-layout/reviews/review-list/review-list.component';
 import {MatDividerModule} from '@angular/material/divider';
+import { AddNewReviewComponent } from './home-page/main-layout/reviews/add-new-review/add-new-review.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,6 @@ import {MatDividerModule} from '@angular/material/divider';
     MatGridListModule,
     MatDividerModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent, RatingComponent, ReviewListComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent, RatingComponent, ReviewListComponent, AddNewReviewComponent]
 })
 export class MaterialModule {}
