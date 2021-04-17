@@ -13,6 +13,11 @@ export class RatingComponent implements AfterViewInit {
   @Input()
   starSize: number = 22;
 
+  @Input()
+  selectable: boolean = false;
+
+  rating: number = 0;
+
   @ViewChild('star1', { read: ElementRef })
   star1: ElementRef<HTMLElement>;
 
@@ -63,6 +68,9 @@ export class RatingComponent implements AfterViewInit {
       this.fill(star, 100);
     }
 
+    // if 5 stars, then there's no remainder
+    if (integer == 5) return;
+
     // fill the last star with percentage
     // e.g. 0.36 * 100 = 36%
     this.fill(this.stars[integer], remainder * 100);
@@ -76,6 +84,28 @@ export class RatingComponent implements AfterViewInit {
 
   setStarsSize() {
     this.el.nativeElement.style.setProperty('--starSize', `${this.starSize}px`)
+  }
+
+  emptyStars() {
+    if (this.selectable) {
+      this.stars.forEach(star => {
+        this.fill(star, 0);
+      });
+    }
+  }
+
+  fillSelectedStars(integer: number) {
+    if (this.selectable) {
+      this.el.nativeElement.style.cursor = 'pointer';
+      this.fillStars(integer, 0);
+    }
+  }
+  
+  setRating( integer: number) {
+    if (this.selectable) {
+      this.rating = integer;
+      console.log(this.rating)
+    }
   }
 
 }
