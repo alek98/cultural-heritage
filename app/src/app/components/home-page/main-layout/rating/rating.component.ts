@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, Renderer2, Input } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Renderer2, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -16,7 +16,11 @@ export class RatingComponent implements AfterViewInit {
   @Input()
   selectable: boolean = false;
 
-  rating: number = 0;
+  @Output()
+  ratingOutputEvent = new EventEmitter<number>();
+
+  isRatingSelected: boolean = false;
+  ratingOutput: number;
 
   @ViewChild('star1', { read: ElementRef })
   star1: ElementRef<HTMLElement>;
@@ -62,14 +66,15 @@ export class RatingComponent implements AfterViewInit {
   }
 
   fillStars(integer: number, remainder: number) {
-    // fill 'whole' stars
-    for (let index = 0; index < integer; index++) {
-      const star = this.stars[index];
-      this.fill(star, 100);
-    }
+    this.stars.forEach((star, index) => {
+      // fill 'whole' stars with gold color
+      if (index < integer) this.fill(star, 100);
+      // fill stars with no color (gray color)
+      else this.fill(star, 0);
+    })
 
-    // if 5 stars, then there's no remainder
-    if (integer == 5) return;
+    // don't fill the last star if there's no remainder
+    if (remainder === 0) return;
 
     // fill the last star with percentage
     // e.g. 0.36 * 100 = 36%
@@ -87,7 +92,11 @@ export class RatingComponent implements AfterViewInit {
   }
 
   emptyStars() {
-    if (this.selectable) {
+    if( this.isRatingSelected) {
+      this.fillStars(this.ratingOutput, 0);
+    }
+    
+    if (!this.isRatingSelected && this.selectable) {
       this.stars.forEach(star => {
         this.fill(star, 0);
       });
@@ -103,8 +112,9 @@ export class RatingComponent implements AfterViewInit {
   
   setRating( integer: number) {
     if (this.selectable) {
-      this.rating = integer;
-      console.log(this.rating)
+      this.isRatingSelected = true;
+      this.ratingOutput = integer;
+      this.ratingOutputEvent.emit(this.ratingOutput);
     }
   }
 

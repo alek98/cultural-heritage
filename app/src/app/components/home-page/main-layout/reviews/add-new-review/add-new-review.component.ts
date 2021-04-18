@@ -1,7 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CulturalHeritage } from 'functions/src/models/culturalHeritage.model';
 import { Review } from 'src/app/models/review.model';
+import { RatingComponent } from '../../rating/rating.component';
 @Component({
   selector: 'app-add-new-review',
   templateUrl: './add-new-review.component.html',
@@ -9,8 +10,11 @@ import { Review } from 'src/app/models/review.model';
 })
 export class AddNewReviewComponent implements OnInit {
 
+  @ViewChild(RatingComponent)
+  ratingComponent: RatingComponent;
+
   newReview: Review = {
-    rating: 0,
+    rating: undefined,
     content: '',
     userDispalyName: ''
   }
@@ -22,4 +26,8 @@ export class AddNewReviewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  receiveRatingOutput(rating: number) {
+    console.log(rating)
+    this.newReview.rating = rating;
+  }
 }

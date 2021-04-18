@@ -3,7 +3,8 @@
 <div mat-dialog-content>
   <!-- rating -->
   <div>
-    <app-rating [starSize]=30 [selectable]=true></app-rating>
+    <!-- TODO: RETURN RATING WHEN USER CLICKS ON A STAR -->
+    <app-rating [starSize]=30 [selectable]=true (ratingOutputEvent)="receiveRatingOutput($event)"></app-rating>
   </div>
 
   <!-- content -->
@@ -19,7 +20,9 @@
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-raised-button color="accent" [mat-dialog-close]="newReview" [disabled]="!newReview.content">
+  <button mat-button mat-raised-button color="accent" 
+  [mat-dialog-close]="newReview" 
+  [disabled]="!newReview.content || !newReview.rating">
     Save
   </button>
 </mat-dialog-actions>
