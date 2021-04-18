@@ -17,7 +17,7 @@ export class AddNewReviewComponent implements OnInit {
   newReview: Review = {
     rating: undefined,
     content: '',
-    userDispalyName: '',
+    userDisplayName: '',
     chId: this.culturalHeritage.id,
   }
   

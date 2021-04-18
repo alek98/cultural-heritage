@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CulturalHeritage } from 'functions/src/models/culturalHeritage.model';
+import { Observable } from 'rxjs';
+import { Review } from 'src/app/models/review.model';
 import { ReviewService } from 'src/app/services/review.service';
 import { AddNewReviewComponent } from '../add-new-review/add-new-review.component';
 
@@ -12,6 +14,8 @@ import { AddNewReviewComponent } from '../add-new-review/add-new-review.componen
 })
 export class ReviewListComponent implements OnInit {
 
+  reviews$: Observable<Review[]>;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public culturalHeritage: CulturalHeritage,
     public addNewDialog: MatDialog,
@@ -21,6 +25,8 @@ export class ReviewListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.openAddDialog();
+    this.reviews$ = this.reviewService.getReviews(this.culturalHeritage.id);
+    this.reviews$.subscribe( reviews => reviews.forEach(review => console.log(review.userDisplayName)))
   }
 
   openAddDialog() {

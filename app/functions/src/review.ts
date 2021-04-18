@@ -14,7 +14,7 @@ export const addNewReview = functions.https.onCall(async (review: Review, contex
     .doc(context.auth.uid)
     .get();
   const user: User = snapshot.data() as User;
-  review.userDispalyName = user.displayName || 'unknown user';
+  review.userDisplayName = user.displayName || 'unknown user';
 
   // save to firestore
   return admin.firestore()
@@ -22,7 +22,7 @@ export const addNewReview = functions.https.onCall(async (review: Review, contex
     .add({
       content: review.content,
       rating: review.rating,
-      userDisplayName: review.userDispalyName,
+      userDisplayName: review.userDisplayName,
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     })
 
