@@ -8,7 +8,8 @@
       </mat-card-title>
       <span class="menu-spacer"></span>
 
-      <button mat-button color="primary" (click)="openAddDialog()">
+      <button mat-button color="primary" (click)="openAddDialog()"
+      [disabled]="(auth.user$ | async)?.role !== 'user'">
         <mat-icon>add</mat-icon>
         write a review
       </button>

@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CulturalHeritage } from 'functions/src/models/culturalHeritage.model';
 import { Observable } from 'rxjs';
 import { Review } from 'src/app/models/review.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { AddNewReviewComponent } from '../add-new-review/add-new-review.component';
 
@@ -20,13 +21,13 @@ export class ReviewListComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public culturalHeritage: CulturalHeritage,
     public addNewDialog: MatDialog,
     private reviewService: ReviewService,
+    public auth: AuthService,
     private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
     // this.openAddDialog();
     this.reviews$ = this.reviewService.getReviews(this.culturalHeritage.id);
-    this.reviews$.subscribe( reviews => reviews.forEach(review => console.log(review.userDisplayName)))
   }
 
   openAddDialog() {
