@@ -16,18 +16,17 @@ export class AddNewReviewComponent implements OnInit {
   newReview: Review = {
     rating: undefined,
     content: '',
-    userDispalyName: ''
+    userDispalyName: '',
+    chId: this.culturalHeritage.id,
   }
   
   constructor(
     @Inject(MAT_DIALOG_DATA) public culturalHeritage: CulturalHeritage,
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   receiveRatingOutput(rating: number) {
-    console.log(rating)
     this.newReview.rating = rating;
   }
 }

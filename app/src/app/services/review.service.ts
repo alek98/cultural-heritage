@@ -14,7 +14,7 @@ export class ReviewService {
   ) { }
 
   addNewReview(review: Review) {
-    const callable = this.fns.httpsCallable<Review>('addReview');
+    const callable = this.fns.httpsCallable<Review>('addNewReview');
     return callable(review).toPromise();
   }
 }
