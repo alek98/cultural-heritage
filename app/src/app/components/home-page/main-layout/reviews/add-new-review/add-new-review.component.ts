@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CulturalHeritage } from 'functions/src/models/culturalHeritage.model';
 import { Review } from 'src/app/models/review.model';
@@ -25,6 +26,10 @@ export class AddNewReviewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { }
+
+  contentFormControl = new FormControl('', [
+    Validators.maxLength(700),
+  ]);
 
   receiveRatingOutput(rating: number) {
     this.newReview.rating = rating;
