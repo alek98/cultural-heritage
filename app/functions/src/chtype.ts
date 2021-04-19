@@ -73,7 +73,8 @@ export const onEditChtype = functions.firestore
     const previousValue = change.before.data() as chType;
     const newValue = change.after.data() as chType;
 
-    // This is crucial to prevent infinite loops.
+    // This is crucial to prevent infinite loops
+    // Any time you write to the same document that triggered a function
     // By returning null we prevent infinite loop.
     // Update only if name or description has changed.
     if(newValue.name == previousValue.name 

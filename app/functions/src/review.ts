@@ -25,3 +25,33 @@ export const addNewReview = functions.https.onCall(async (review: Review, contex
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     })
 })
+
+// when new review is added, recalculate avarage rating for the specific Cultural Heritage
+export const onAddNewReview = functions.firestore
+  .document('culturalHeritages/{chId}/reviews/{reviewId}')
+  .onWrite(async (change, context) => {
+
+    //get all reviews
+    const reviews = await admin.firestore()
+      .collection(`culturalHeritages/${context.params.chId}/reviews`)
+      .get();
+
+    let ratingsSum = 0;
+    let ratingsTotal = 0;
+    reviews.forEach(reviewDoc => {
+      let rating = reviewDoc.get('rating') as number | undefined;
+      if (rating) {
+        ratingsSum += rating;
+        ratingsTotal++;
+      }
+    })
+
+    const avgRating = parseFloat((ratingsSum / ratingsTotal).toFixed(1));
+
+    return admin.firestore()
+      .collection('culturalHeritages')
+      .doc(context.params.chId)
+      .update({
+        avgRating
+      });
+  })
