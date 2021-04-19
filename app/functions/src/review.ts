@@ -15,15 +15,13 @@ export const addNewReview = functions.https.onCall(async (review: Review, contex
     .get();
   const user: User = snapshot.data() as User;
   review.userDisplayName = user.displayName || 'unknown user';
+  review.userId = user.uid;
 
   // save to firestore
   return admin.firestore()
     .collection(`culturalHeritages/${review.chId}/reviews`)
     .add({
-      content: review.content,
-      rating: review.rating,
-      userDisplayName: review.userDisplayName,
+      ...review,
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     })
-
 })
