@@ -20,9 +20,11 @@ export class ReviewService {
   }
 
   getReviews(chId: string) {
-    let itemsCollection = this.firestore.collection<Review>(`culturalHeritages/${chId}/reviews`);
+    let itemsCollection = this.firestore.collection<Review>(`culturalHeritages/${chId}/reviews`,
+      ref => ref.orderBy('createdAt', 'desc'));
+      
     return itemsCollection.snapshotChanges().pipe(
-      map (actions => actions.map (a => {
+      map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Review;
         const id = a.payload.doc.id;
         data.id = id;
