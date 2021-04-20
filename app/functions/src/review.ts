@@ -38,8 +38,8 @@ export const onAddNewReview = functions.firestore
 
     let ratingsSum = 0;
     let ratingsTotal = 0;
-    reviews.forEach(reviewDoc => {
-      let rating = reviewDoc.get('rating') as number | undefined;
+    reviews.forEach(reviewDocSnapshot => {
+      let rating = reviewDocSnapshot.get('rating') as number | undefined;
       if (rating) {
         ratingsSum += rating;
         ratingsTotal++;
@@ -55,3 +55,20 @@ export const onAddNewReview = functions.firestore
         avgRating
       });
   })
+
+
+// return all users reviews
+export const getUserReviews = functions.https.onCall(async (data, context) => {
+
+  if (!context.auth) return;
+  const userId = context.auth.uid;
+
+  const myReviewsSnapshot = await admin.firestore()
+    .collectionGroup('reviews')
+    .where('userId', '==', userId)
+    .get();
+
+    let myReviews: Review[] = myReviewsSnapshot.docs.map(doc => doc.data() as Review);
+
+  return myReviews;
+})

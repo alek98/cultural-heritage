@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-my-reviews',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyReviewsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private reviewService: ReviewService,
+    private auth: AuthService,
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.auth.user$.subscribe(async user => {
+      let myReviews = await this.reviewService.getUserReviews(user);
+      console.log(myReviews)
+    })
   }
-
 }

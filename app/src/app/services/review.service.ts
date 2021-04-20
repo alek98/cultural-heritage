@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { Review } from '../models/review.model';
 import { map } from 'rxjs/operators';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,10 @@ export class ReviewService {
         return data;
       }))
     )
+  }
+
+  getUserReviews(user: User) {
+    const callable = this.fns.httpsCallable<object, Review[]>('getUserReviews');
+    return callable({id: user.uid}).toPromise();
   }
 }
