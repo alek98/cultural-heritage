@@ -20,9 +20,6 @@ export class ListLayoutComponent implements OnInit {
 
   ngOnInit():void {
     this.culturalHeritages$ = this.culturalHeritageService.getCulturalHeritages();
-    this.culturalHeritages$.subscribe( chs => { 
-      this.openReviews(chs.filter( ch => ch.name == "Acropolis")[0])
-    })
   }
 
   openReviews(selected: CulturalHeritage) {
