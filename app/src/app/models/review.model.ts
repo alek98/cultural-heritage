@@ -7,5 +7,5 @@ export interface Review {
   userId: string,
   chId: string,
   id?: string,
-  createdAt?: firebase.firestore.Timestamp,
+  createdAt?: firebase.firestore.Timestamp | any,
 }

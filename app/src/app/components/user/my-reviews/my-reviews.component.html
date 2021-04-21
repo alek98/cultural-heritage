@@ -1,1 +1,24 @@
-<p>my-reviews works!</p>
+<mat-card class="mat-elevation-z3 main">
+  <mat-card-header>
+    <mat-card-title>
+      <h1>My Reviews</h1>
+    </mat-card-title>
+    <span class="menu-spacer"></span>
+  </mat-card-header>
+
+  <mat-card-content *ngFor="let review of reviews">
+    <div>
+      <mat-divider></mat-divider>
+      <div class="review">
+        <div class="name"> {{review.userDisplayName || 'wtf'}} </div>
+        <div class="rating">
+          <app-rating [value]=review.rating></app-rating>
+          <span> on {{ review.createdAt.toDate() | date: 'dd.MM.yyyy.'}}</span>
+        </div>
+        <div class="review-text">
+          {{review.content}}
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
