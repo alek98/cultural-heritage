@@ -107,3 +107,16 @@ export const getUserReviews = functions.https.onCall(async (data, context) => {
 
   return reviews;
 })
+
+export const editReview = functions.https.onCall(async (review: Review, context) => {
+  await checkRegularUserPermissions(context);
+  if (!context.auth) return;
+
+  if(!review.id) {
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      'id was empty'
+    )
+  }
+  
+})

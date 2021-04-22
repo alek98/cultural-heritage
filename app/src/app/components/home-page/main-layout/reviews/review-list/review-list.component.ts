@@ -26,9 +26,7 @@ export class ReviewListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.openAddDialog();
     this.reviews$ = this.reviewService.getReviews(this.culturalHeritage.id);
-    this.reviews$.subscribe(reviews => reviews.forEach(review => console.log(review.createdAt)))
   }
 
   openAddDialog() {

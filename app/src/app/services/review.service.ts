@@ -38,4 +38,9 @@ export class ReviewService {
     const callable = this.fns.httpsCallable<object, Review[]>('getUserReviews');
     return callable({id: user.uid}).toPromise();
   }
+
+  editReview(review: Review) {
+    const callable = this.fns.httpsCallable<Review>('editReview');
+    return callable(review).toPromise();
+  }
 }
