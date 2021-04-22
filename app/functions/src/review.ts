@@ -114,11 +114,18 @@ export const editReview = functions.https.onCall(async (review: Review, context)
   await checkRegularUserPermissions(context);
   if (!context.auth) return;
 
-  if(!review.id) {
+  if (!review.id) {
     throw new functions.https.HttpsError(
       'failed-precondition',
       'id was empty'
     )
   }
-  
+
+  return admin.firestore()
+    .doc(`culturalHeritages/${review.chId}/reviews/${review.id}`)
+    .set({
+      content: review.content,
+      rating: review.rating,
+    },
+    { merge: true })
 })

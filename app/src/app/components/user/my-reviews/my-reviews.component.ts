@@ -35,6 +35,8 @@ export class MyReviewsComponent implements OnInit {
         )
         return { ...review, createdAt }
       });
+
+      console.log(this.reviews)
     })
   }
 
