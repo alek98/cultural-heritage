@@ -24,6 +24,10 @@ export class MyReviewsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.setUserReviews();
+  }
+
+  setUserReviews() {
     this.auth.user$.subscribe(async user => {
       let reviews = await this.reviewService.getUserReviews(user);
 
@@ -35,8 +39,6 @@ export class MyReviewsComponent implements OnInit {
         )
         return { ...review, createdAt }
       });
-
-      console.log(this.reviews)
     })
   }
 
@@ -50,12 +52,14 @@ export class MyReviewsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if(result){
         try {
-          console.log(result);
           await this.reviewService.editReview(result);
           this.openSuccessSnackBar(`Successfully edited review.`);
         }
         catch (error) {
           this.openFailSnackBar(error.message);
+        }
+        finally {
+          this.setUserReviews();
         }
       }
     })
