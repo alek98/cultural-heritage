@@ -26,6 +26,8 @@ const routes: Routes = [
       },
       {
         path: 'my-reviews',
+        data: {roles: ['user']},
+        canActivate: [RoleGuard],
         component: MyReviewsComponent
       },
       {

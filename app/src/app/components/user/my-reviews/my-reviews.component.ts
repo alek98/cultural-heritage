@@ -29,6 +29,7 @@ export class MyReviewsComponent implements OnInit {
 
   setUserReviews() {
     this.auth.user$.subscribe(async user => {
+      if(!user) return;
       let reviews = await this.reviewService.getUserReviews(user);
 
       this.reviews = reviews.map(review => {
