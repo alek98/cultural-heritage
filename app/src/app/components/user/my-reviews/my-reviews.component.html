@@ -10,7 +10,14 @@
     <div>
       <mat-divider></mat-divider>
       <div class="review">
-        <div class="name"> {{review.userDisplayName || 'wtf'}} </div>
+        <span class="edit-btn">
+          <button mat-icon-button color="accent">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+        </span>
+        <!-- TODO: ovo izmeniti da ne bude ime vec naziv kulturnog dobra -->
+        <div class="name">{{review.chName || ''}}</div>
         <div class="rating">
           <app-rating [value]=review.rating></app-rating>
           <span> on {{ review.createdAt.toDate() | date: 'dd.MM.yyyy.'}}</span>

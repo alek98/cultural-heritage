@@ -34,7 +34,7 @@ export async function checkRegularUserPermissions(context: functions.https.Calla
       )
     }
   
-    // admin cannot add a review, only user can add a review
+    // check if logged in as regular user (by role)
     const snapshot = await admin.firestore()
       .collection('users')
       .doc(context.auth.uid)

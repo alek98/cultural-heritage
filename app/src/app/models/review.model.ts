@@ -8,4 +8,5 @@ export interface Review {
   chId: string,
   id?: string,
   createdAt?: firebase.firestore.Timestamp | any,
+  chName?: string,
 }

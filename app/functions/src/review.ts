@@ -3,6 +3,8 @@ import * as admin from 'firebase-admin'
 import { Review } from './models/review.model'
 import { checkRegularUserPermissions } from './permissions'
 import { User } from './models/user.model'
+import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore'
+import { CulturalHeritage } from './models/culturalHeritage.model'
 
 export const addNewReview = functions.https.onCall(async (review: Review, context) => {
   await checkRegularUserPermissions(context);
@@ -57,9 +59,21 @@ export const onAddNewReview = functions.firestore
   })
 
 
-// return all users reviews
+/**
+ * @returns all users reviews with cultural heritage name
+ * first  - check if user is logged in as regular user & get user ID
+ * second - get all reviews which user has written
+ * third  - find corresponding cultural heritage name for each review
+ * 1. make a list of promises. Each promise is document snapshot from ch collection
+ * 2. fetch promises in parallel
+ * 3. wait for all promises to become resolved
+ * 4. for each review find cultural heritage by id
+ * 5. set review's property chName to found cultural heritage's name
+ * 6. return list of reviews which also contain name of a found cultural heritage
+ */
 export const getUserReviews = functions.https.onCall(async (data, context) => {
 
+  await checkRegularUserPermissions(context);
   if (!context.auth) return;
   const userId = context.auth.uid;
 
@@ -68,7 +82,28 @@ export const getUserReviews = functions.https.onCall(async (data, context) => {
     .where('userId', '==', userId)
     .get();
 
-    let myReviews: Review[] = myReviewsSnapshot.docs.map(doc => doc.data() as Review);
+  const reviews: Review[] = []
+  myReviewsSnapshot.forEach(review => {
+    reviews.push(review.data() as Review)
+  })
 
-  return myReviews;
+  const promises: Promise<DocumentSnapshot>[] = []
+  reviews.forEach(review => {
+    const chPromise = admin.firestore()
+      .collection('culturalHeritages')
+      .doc(review.chId)
+      .get()
+
+    promises.push(chPromise);
+  })
+
+  const chSnapshots = await Promise.all(promises);
+
+  reviews.forEach(review => {
+    const chSnapshot = chSnapshots.find(chSnapshot => chSnapshot.id === review.chId);
+    const ch = chSnapshot?.data() as CulturalHeritage;
+    review.chName = ch.name;
+  })
+
+  return reviews;
 })

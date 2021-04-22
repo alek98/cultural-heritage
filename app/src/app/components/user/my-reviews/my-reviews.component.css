@@ -24,3 +24,6 @@
   color: rgb(92, 92, 92);
   padding-left: 5px;
 }
+.edit-btn {
+  float:right;
+}
