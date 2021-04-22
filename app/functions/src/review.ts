@@ -84,7 +84,9 @@ export const getUserReviews = functions.https.onCall(async (data, context) => {
 
   const reviews: Review[] = []
   myReviewsSnapshot.forEach(review => {
-    reviews.push(review.data() as Review)
+    const reviewData = review.data() as Review;
+    reviewData.id = review.id;
+    reviews.push(reviewData)
   })
 
   const promises: Promise<DocumentSnapshot>[] = []
