@@ -92,15 +92,15 @@ export class RatingComponent implements AfterViewInit {
   }
 
   emptyStars() {
+
     if( this.isRatingSelected) {
       this.fillStars(this.ratingOutput, 0);
     }
     
-    if (!this.isRatingSelected && this.selectable) {
-      this.stars.forEach(star => {
-        this.fill(star, 0);
-      });
+    else if (!this.isRatingSelected && this.selectable) {
+      this.fillStars(this.value, 0)
     }
+
   }
 
   fillSelectedStars(integer: number) {
