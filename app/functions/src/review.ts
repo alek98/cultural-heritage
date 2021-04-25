@@ -128,3 +128,34 @@ export const editReview = functions.https.onCall(async (review: Review, context)
       rating: review.rating,
     })
 })
+
+/**
+ * this function filters bad words that regular user wrote.
+ * it finds bad words and replaces them with ****
+ */
+export const onWriteReview = functions.firestore
+  .document('culturalHeritages/{chId}/reviews/{reviewId}')
+  .onWrite(async (change, context) => {
+    
+    // review can be undefined if the document is being deleted
+    let newValue = change.after.data() as Review | undefined;
+    let oldValue = change.before.data() as Review | undefined;
+    
+    
+    // If the document does not exist, it has been deleted.
+    // Then there's no need to filter worlds
+    if(!newValue) return null;
+    // This is crucial to prevent infinite loops
+    // Any time you write to the same document that triggered a function
+    // By returning null we prevent infinite loop.
+    if(newValue.content === oldValue?.content) return null;
+
+    // filter bad words
+    let Filter = require('bad-words');
+    let filter = new Filter({placeHolder: '*'});
+    let filteredText = filter.clean(newValue.content);
+
+    return change.after.ref.update({
+      'content': filteredText
+    })
+  })
