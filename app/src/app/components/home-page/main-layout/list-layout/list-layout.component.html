@@ -11,19 +11,23 @@
       </mat-card-header>
 
       <mat-card-content>
-        
+        <!-- description -->
         <div class="description">
           {{ch.description}}
         </div>
 
+        <!-- footer - reivews(ratings & comments), news, location, chtype -->
         <div class="footer">
-          <div class="rating">
-            {{ch.avgRating}}
+
+          <div class="reviews" (click)="openReviews(ch)">
+            <div class="rating">
+              {{ch.avgRating}}
+            </div>
+            <div class="stars" >
+              <app-rating [value]=ch.avgRating [starSize]=18></app-rating>
+            </div>
           </div>
-          <div class="stars">
-            <app-rating [value]=ch.avgRating [starSize]=18></app-rating>
-          </div>
-          
+     
           <div class="location-chip">
             {{ch.location.country}}, {{ch.location.city}}
           </div>

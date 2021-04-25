@@ -30,6 +30,13 @@
 .footer {
   display: flex;
 }
+.reviews {
+  display: flex;
+
+}
+.reviews:hover {
+  cursor: pointer;
+}
 .rating {
   padding: 5px 10px;
   font-size: 18px;

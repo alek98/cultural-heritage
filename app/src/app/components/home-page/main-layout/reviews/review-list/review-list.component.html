@@ -1,0 +1,34 @@
+<div class="main">
+  <!-- <h1>Reviews</h1> -->
+
+  <mat-card class="mat-elevation-z0">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Reviews for {{culturalHeritage.name}}</h1>
+      </mat-card-title>
+      <span class="menu-spacer"></span>
+
+      <button mat-button color="primary" (click)="openAddDialog()"
+      [disabled]="(auth.user$ | async)?.role !== 'user'">
+        <mat-icon>add</mat-icon>
+        write a review
+      </button>
+    </mat-card-header>
+
+    <mat-card-content *ngFor="let review of reviews$ | async">
+      <div>
+        <mat-divider></mat-divider>
+        <div class="review">
+          <div class="name"> {{review.userDisplayName || 'wtf'}} </div>
+          <div class="rating">
+            <app-rating [value]=review.rating></app-rating>
+            <span> on {{review.createdAt.toDate() | date: 'dd.MM.yyyy.'}}</span>
+          </div>
+          <div class="review-text">
+            {{review.content}}
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

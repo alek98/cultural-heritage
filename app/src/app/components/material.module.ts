@@ -34,6 +34,11 @@ import { MainLayoutComponent } from './home-page/main-layout/main-layout.compone
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ListLayoutComponent } from './home-page/main-layout/list-layout/list-layout.component';
 import { RatingComponent } from './home-page/main-layout/rating/rating.component';
+import { ReviewListComponent } from './home-page/main-layout/reviews/review-list/review-list.component';
+import {MatDividerModule} from '@angular/material/divider';
+import { AddNewReviewComponent } from './home-page/main-layout/reviews/add-new-review/add-new-review.component';
+import { MyReviewsComponent } from './user/my-reviews/my-reviews.component';
+import { EditReviewComponent } from './user/edit-review/edit-review.component';
 
 @NgModule({
   imports: [
@@ -52,7 +57,8 @@ import { RatingComponent } from './home-page/main-layout/rating/rating.component
     MatDialogModule,
     MatSelectModule,
     MatGridListModule,
+    MatDividerModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent, RatingComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent, RatingComponent, ReviewListComponent, AddNewReviewComponent, MyReviewsComponent, EditReviewComponent]
 })
 export class MaterialModule {}

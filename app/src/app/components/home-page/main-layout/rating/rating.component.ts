@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, Renderer2, Input } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Renderer2, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -12,6 +12,15 @@ export class RatingComponent implements AfterViewInit {
 
   @Input()
   starSize: number = 22;
+
+  @Input()
+  selectable: boolean = false;
+
+  @Output()
+  ratingOutputEvent = new EventEmitter<number>();
+
+  isRatingSelected: boolean = false;
+  ratingOutput: number;
 
   @ViewChild('star1', { read: ElementRef })
   star1: ElementRef<HTMLElement>;
@@ -57,11 +66,15 @@ export class RatingComponent implements AfterViewInit {
   }
 
   fillStars(integer: number, remainder: number) {
-    // fill 'whole' stars
-    for (let index = 0; index < integer; index++) {
-      const star = this.stars[index];
-      this.fill(star, 100);
-    }
+    this.stars.forEach((star, index) => {
+      // fill 'whole' stars with gold color
+      if (index < integer) this.fill(star, 100);
+      // fill stars with no color (gray color)
+      else this.fill(star, 0);
+    })
+
+    // don't fill the last star if there's no remainder
+    if (remainder === 0) return;
 
     // fill the last star with percentage
     // e.g. 0.36 * 100 = 36%
@@ -76,6 +89,33 @@ export class RatingComponent implements AfterViewInit {
 
   setStarsSize() {
     this.el.nativeElement.style.setProperty('--starSize', `${this.starSize}px`)
+  }
+
+  emptyStars() {
+
+    if( this.isRatingSelected) {
+      this.fillStars(this.ratingOutput, 0);
+    }
+    
+    else if (!this.isRatingSelected && this.selectable) {
+      this.fillStars(this.value, 0)
+    }
+
+  }
+
+  fillSelectedStars(integer: number) {
+    if (this.selectable) {
+      this.el.nativeElement.style.cursor = 'pointer';
+      this.fillStars(integer, 0);
+    }
+  }
+  
+  setRating( integer: number) {
+    if (this.selectable) {
+      this.isRatingSelected = true;
+      this.ratingOutput = integer;
+      this.ratingOutputEvent.emit(this.ratingOutput);
+    }
   }
 
 }

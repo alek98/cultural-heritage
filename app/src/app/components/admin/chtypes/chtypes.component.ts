@@ -69,7 +69,6 @@ export class ChtypesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if(result) {
         try {
-          console.log(result);
           await this.chtypeService.deleteChtype(result);
           this.openSuccessSnackBar(`Successfully deleted ${result.name}`)
         } catch (error) {

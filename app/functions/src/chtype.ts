@@ -46,7 +46,8 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
     .where('name', '==', chtype.name)
     .get();
 
-  // if the document exists and doesn't have current id throw an error
+  // if the document with a given name already exists 
+  // and doesn't have current id throw an error
   if (!chtypes.empty) {
     console.log('ids: ', chtype.id,  chtypes.docs[0].id);
     console.log('name: ', chtype.name);
@@ -73,7 +74,8 @@ export const onEditChtype = functions.firestore
     const previousValue = change.before.data() as chType;
     const newValue = change.after.data() as chType;
 
-    // This is crucial to prevent infinite loops.
+    // This is crucial to prevent infinite loops
+    // Any time you write to the same document that triggered a function
     // By returning null we prevent infinite loop.
     // Update only if name or description has changed.
     if(newValue.name == previousValue.name 

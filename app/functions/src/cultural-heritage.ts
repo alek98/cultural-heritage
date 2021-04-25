@@ -20,13 +20,15 @@ export const editCulturalHeritage = functions.https.onCall(async (ch: CulturalHe
     )
   }
 
-  const chId = ch.id;
-  delete ch.id; // avoid adding id into the db 
-
   return admin.firestore()
     .collection('culturalHeritages')
-    .doc(chId)
-    .update(ch);
+    .doc(ch.id)
+    .update({
+      'name': ch.name,
+      'chtype': ch.chtype,
+      'description': ch.description,
+      'location': ch.location
+    });
 })
 
 export const deleteCulturalHeritage = functions.https.onCall(async (ch: CulturalHeritage, context) => {

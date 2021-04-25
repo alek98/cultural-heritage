@@ -1,0 +1,36 @@
+<h1 mat-dialog-title> Add review for {{culturalHeritage.name}} </h1>
+
+<div mat-dialog-content>
+  <!-- rating -->
+  <div>
+    <app-rating [starSize]=30 [selectable]=true (ratingOutputEvent)="receiveRatingOutput($event)"></app-rating>
+  </div>
+
+  <!-- content -->
+  <mat-form-field style="width: 500px;" appearance="fill">
+    <!-- <mat-label>Your Experience</mat-label> -->
+    <textarea 
+    type="text" 
+    autocomplete="off" 
+    matInput 
+    rows="10" 
+    [formControl]="contentFormControl"
+    placeholder="Share your own experience"
+    [(ngModel)]="newReview.content">
+    </textarea>
+  </mat-form-field>
+</div>
+
+<span style="color: red;" *ngIf="contentFormControl.invalid">
+  You have exceeded maximum number of characters (700) 
+</span>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-raised-button color="accent" 
+  [mat-dialog-close]="newReview" 
+  [disabled]="!newReview.content || !newReview.rating || contentFormControl.invalid">
+    Save
+  </button>
+</mat-dialog-actions>

@@ -7,6 +7,7 @@ import { NewsComponent } from './components/admin/news/news.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { MyReviewsComponent } from './components/user/my-reviews/my-reviews.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 
@@ -22,6 +23,12 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+      },
+      {
+        path: 'my-reviews',
+        data: {roles: ['user']},
+        canActivate: [RoleGuard],
+        component: MyReviewsComponent
       },
       {
         path: 'manage',

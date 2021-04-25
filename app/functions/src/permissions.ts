@@ -24,3 +24,26 @@ export async function checkPermissions(context: functions.https.CallableContext)
     )
   }
 }
+
+export async function checkRegularUserPermissions(context: functions.https.CallableContext) {
+    // if user is not authenticated, he/she must authenticate
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        'unauthenticated',
+        'you must log in.'
+      )
+    }
+  
+    // check if logged in as regular user (by role)
+    const snapshot = await admin.firestore()
+      .collection('users')
+      .doc(context.auth.uid)
+      .get();
+    const user: User = snapshot.data() as User;
+    if (user.role !== 'user') {
+      throw new functions.https.HttpsError(
+        'permission-denied',
+        'not logged in as user'
+      )
+    }
+}

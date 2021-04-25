@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
 import { CulturalHeritageService } from 'src/app/services/cultural-heritage.service';
+import { ReviewListComponent } from '../reviews/review-list/review-list.component';
 
 @Component({
   selector: 'app-list-layout',
@@ -13,10 +15,19 @@ export class ListLayoutComponent implements OnInit {
 
   constructor(
     private culturalHeritageService: CulturalHeritageService,
+    public reviewsDialog: MatDialog,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit():void {
     this.culturalHeritages$ = this.culturalHeritageService.getCulturalHeritages();
+  }
+
+  openReviews(selected: CulturalHeritage) {
+    const dialogRef = this.reviewsDialog.open( ReviewListComponent, {
+      maxWidth: '90vw',
+      maxHeight: '90vh',
+      data: selected
+    })
   }
 
 }

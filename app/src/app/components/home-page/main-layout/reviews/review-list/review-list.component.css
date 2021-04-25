@@ -1,0 +1,21 @@
+.menu-spacer {
+  flex: 1 1 auto;
+}
+.mat-card {
+  max-width: 600px;
+}
+.review {
+  padding-top: 10px;
+}
+.name {
+  padding-bottom: 5px;
+  font-size: large;
+  font-weight: 500;
+}
+.review-text {
+  font-size: medium;
+}
+.rating span {
+  color: rgb(92, 92, 92);
+  padding-left: 5px;
+}
