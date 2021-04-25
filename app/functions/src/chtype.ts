@@ -46,7 +46,8 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
     .where('name', '==', chtype.name)
     .get();
 
-  // if the document exists and doesn't have current id throw an error
+  // if the document with a given name already exists 
+  // and doesn't have current id throw an error
   if (!chtypes.empty) {
     console.log('ids: ', chtype.id,  chtypes.docs[0].id);
     console.log('name: ', chtype.name);

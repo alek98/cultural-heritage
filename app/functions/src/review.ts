@@ -123,9 +123,8 @@ export const editReview = functions.https.onCall(async (review: Review, context)
 
   return admin.firestore()
     .doc(`culturalHeritages/${review.chId}/reviews/${review.id}`)
-    .set({
+    .update({
       content: review.content,
       rating: review.rating,
-    },
-    { merge: true })
+    })
 })
