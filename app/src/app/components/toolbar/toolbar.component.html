@@ -4,13 +4,20 @@
     <span class="menu-spacer"></span>
 
     <div *ngIf="(auth.user$ | async)?.role === 'admin' ">
-      <button mat-button routerLink="/manage" >manage</button>
+      <button mat-button routerLink="/manage" >
+        <mat-icon class="material-icons-filled">edit</mat-icon>
+        manage
+      </button>
     </div>
 
     <div *ngIf="(auth.user$ | async)?.role === 'user' ">
       <button mat-button routerLink="/my-reviews">
         <mat-icon class="material-icons-outlined">reviews</mat-icon>
         My Reviews
+      </button>
+      <button mat-button routerLink="/my-news">
+        <mat-icon class="material-icons-outlined">feed</mat-icon>
+        News
       </button>
     </div>
     

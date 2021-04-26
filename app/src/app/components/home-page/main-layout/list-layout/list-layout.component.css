@@ -8,7 +8,7 @@
   max-width: 800px;
   margin: auto ;
   margin-top: -12rem;
-  /* background-color: rgb(173, 216, 230, 0.5); */
+  padding-bottom: 3rem;
 }
 
 ::ng-deep .mat-card-header-text {
@@ -24,7 +24,7 @@
   padding: 5px 10px;
   margin: 5px 1px;
   color: rgb(92, 92, 92);
-  font-size: medium;
+  font-size: larger;
 }
 
 .footer {

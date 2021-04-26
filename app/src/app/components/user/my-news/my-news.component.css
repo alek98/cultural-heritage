@@ -1,0 +1,42 @@
+.main {
+  margin: 30px auto;
+}
+.menu-spacer {
+  flex: 1 1 auto;
+}
+.mat-card {
+  /* min-width: 400px; */
+  width: 100%;
+  max-width: 600px;
+}
+.news {
+  padding-top: 15px;
+}
+.header {
+  display: flex;
+}
+.heading {
+  padding-bottom: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(19, 19, 19);
+  display: inline-flex;
+}
+.chName {
+  font-size: 16px;
+  font-weight: 500;
+  color:#ab36f8;
+  border-radius: 10px;
+  padding: 3px 5px;
+  margin: 0px 0px;
+  margin-left: auto;
+}
+.date {
+  font-weight: 200;
+  font-style: italic;
+  background-color: #feffbd;
+  border-radius: 10px;
+  padding: 2px 10px;
+  margin: 0px 5px;
+  margin-left: auto;
+}
