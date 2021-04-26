@@ -39,6 +39,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { AddNewReviewComponent } from './home-page/main-layout/reviews/add-new-review/add-new-review.component';
 import { MyReviewsComponent } from './user/my-reviews/my-reviews.component';
 import { EditReviewComponent } from './user/edit-review/edit-review.component';
+import { MyNewsComponent } from './user/my-news/my-news.component';
 
 @NgModule({
   imports: [
@@ -59,6 +60,6 @@ import { EditReviewComponent } from './user/edit-review/edit-review.component';
     MatGridListModule,
     MatDividerModule,
   ],
-  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent, RatingComponent, ReviewListComponent, AddNewReviewComponent, MyReviewsComponent, EditReviewComponent]
+  declarations: [HomePageComponent, SignupComponent, ToolbarComponent, LoginComponent, DashboardComponent, ChsComponent, AddNewChComponent, ChtypesComponent, AddNewChtypeComponent, EditChtypeComponent, DeleteChtypeComponent, EditChComponent, DeleteChComponent, NewsComponent, AddNewsComponent, EditNewsComponent, DeleteNewsComponent, MainLayoutComponent, ListLayoutComponent, RatingComponent, ReviewListComponent, AddNewReviewComponent, MyReviewsComponent, EditReviewComponent, MyNewsComponent]
 })
 export class MaterialModule {}
