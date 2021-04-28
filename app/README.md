@@ -30,3 +30,11 @@ For documentation click [here](https://firebase.google.com/docsttps://github.com
 `firebase emulators:start --import ../testdata` - start local firebase server with imported test data
 
 `firebase emulators:export ../testdata` - export testdata
+
+# Get ready for production
+When angular app is ready for a production use `cd app` and then `ng build --prod`. This will compile angular app into dist/app folder. 
+
+Before deploying, it's a good practice to test compiled app locally. In order to do that, first [run firebase locally](#run-firebase-locally) then open firebase hosting emulator. This will open localhost:5000 by default with production ready app.
+
+After app has been tested, we can deploy using: `cd app` and then `firebase deploy --only hosting`.
+Angular app should be deployed to firebase.
