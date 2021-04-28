@@ -22,15 +22,16 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth'
 This function is necessary to properly load logged in user after page refresh.
 Otherwise, user will be logged out.
 There is a bug in angularfire which is fixed by delaying auth emulator.
+Use this function only in development environment!
 */ 
-export function initializeApp1(afa: AngularFireAuth): any {
-  return () => {
-    return new Promise<void>(resolve => {
-      afa.useEmulator(`http://localhost:9099/`);
-      setTimeout(() => resolve(), 100);
-    });
-  };
-}
+// export function initializeApp1(afa: AngularFireAuth): any {
+//   return () => {
+//     return new Promise<void>(resolve => {
+//       afa.useEmulator(`http://localhost:9099/`);
+//       setTimeout(() => resolve(), 100);
+//     });
+//   };
+// }
 
 @NgModule({
   declarations: [
@@ -60,14 +61,15 @@ export function initializeApp1(afa: AngularFireAuth): any {
       useValue: environment.production ? undefined : ['localhost', 9099]
     },
     // Delay the app initialization process by 100ms
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp1,
-      // for some reason this dependency is necessary for this solution to work.
-      // Maybe in order to trigger the constructor *before* waiting 100ms?
-      deps: [AngularFireAuth],
-      multi: true
-    }
+    // Use this function only in development environment!
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeApp1,
+    //   // for some reason this dependency is necessary for this solution to work.
+    //   // Maybe in order to trigger the constructor *before* waiting 100ms?
+    //   deps: [AngularFireAuth],
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })
