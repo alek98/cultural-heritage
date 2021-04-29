@@ -14,7 +14,6 @@ export const getCollectionSize = functions.https.onRequest(async (request, respo
 
     if (size === 0) {
       // if collection is not found, try finding a subcollection
-      try {
         const snapshot = await admin.firestore()
           .collectionGroup(name)
           .get();
@@ -23,15 +22,11 @@ export const getCollectionSize = functions.https.onRequest(async (request, respo
 
         if (size === 0) throw new Error("NotFound");
 
-        let res = { name, size, }
+        const res = { name, size, }
         response.status(200).send(res);
-      }
-      catch (error) {
-        throw error;
-      }
-    };
+    }
 
-    let res = { name, size, }
+    const res = { name, size, }
     response.status(200).send(res);
 
   } catch (error) {

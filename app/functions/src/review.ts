@@ -41,7 +41,7 @@ export const onAddNewReview = functions.firestore
     let ratingsSum = 0;
     let ratingsTotal = 0;
     reviews.forEach(reviewDocSnapshot => {
-      let rating = reviewDocSnapshot.get('rating') as number | undefined;
+      const rating = reviewDocSnapshot.get('rating') as number | undefined;
       if (rating) {
         ratingsSum += rating;
         ratingsTotal++;
@@ -135,11 +135,11 @@ export const editReview = functions.https.onCall(async (review: Review, context)
  */
 export const onWriteReview = functions.firestore
   .document('culturalHeritages/{chId}/reviews/{reviewId}')
-  .onWrite(async (change, context) => {
+  .onWrite(async (change) => {
     
     // review can be undefined if the document is being deleted
-    let newValue = change.after.data() as Review | undefined;
-    let oldValue = change.before.data() as Review | undefined;
+    const newValue = change.after.data() as Review | undefined;
+    const oldValue = change.before.data() as Review | undefined;
     
     
     // If the document does not exist, it has been deleted.
@@ -151,9 +151,9 @@ export const onWriteReview = functions.firestore
     if(newValue.content === oldValue?.content) return null;
 
     // filter bad words
-    let Filter = require('bad-words');
-    let filter = new Filter({placeHolder: '*'});
-    let filteredText = filter.clean(newValue.content);
+    const Filter = await import('bad-words')
+    const filter = new Filter({placeHolder: '*'});
+    const filteredText = filter.clean(newValue.content);
 
     return change.after.ref.update({
       'content': filteredText

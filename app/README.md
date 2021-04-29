@@ -32,9 +32,23 @@ For documentation click [here](https://firebase.google.com/docsttps://github.com
 `firebase emulators:export ../testdata` - export testdata
 
 # Get ready for production
+### Deploy angular app & hosting
 When angular app is ready for a production use `cd app` and then `ng build --prod`. This will compile angular app into dist/app folder. 
 
 Before deploying, it's a good practice to test compiled app locally. In order to do that, first [run firebase locally](#run-firebase-locally) then open firebase hosting emulator. This will open localhost:5000 by default with production ready app.
 
 After app has been tested, we can deploy using: `cd app` and then `firebase deploy --only hosting`.
 Angular app should be deployed to firebase.
+
+### Deploy firestore
+When deploying firestore, we will deploy firestore database and firestore rules. When ready for a production use `cd app` and then `firebase deploy --only firestore`.
+If updating only firestore rules and not dummy test database, use `firebase deploy --only firestore:rules`.
+
+### Deploy functions
+First change from Spark plan to Blaze plan (pay-as-you-go).
+First, run `cd app/functions`, then run `npm run lint`. Here we can see all of the warnings and errors that linter finds. In order to let linter fix the errors run `npm run lint -- --fix`. After that check again for other errors linter hasn't fixed by running `npm run lint`. Manually fix those errors.
+<i>Tip 1: open .eslintrc.js file and put or disable linter rules by editing rules section. Tip 2: comment out google extension to disable max-line-len error for 80 characters.</i>
+
+When errors are fixed and `npm run lint` doesn't give any errors or warnings, compile typescript files with `npx tsc`. This is neccessary because compiled files will be deployed, not typescript files. 
+
+After that run `firebase deploy --only functions`.
