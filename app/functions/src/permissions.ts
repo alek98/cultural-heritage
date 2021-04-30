@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 import { User } from './models/user.model';
 
-export async function checkPermissions(context: functions.https.CallableContext) {
+export async function checkPermissions(context: functions.https.CallableContext) : Promise<functions.https.HttpsError | undefined> {
   // if user is not authenticated, he/she must authenticate
   if (!context.auth) {
     throw new functions.https.HttpsError(
@@ -23,9 +23,10 @@ export async function checkPermissions(context: functions.https.CallableContext)
       'not logged in as admin'
     )
   }
+  return
 }
 
-export async function checkRegularUserPermissions(context: functions.https.CallableContext) {
+export async function checkRegularUserPermissions(context: functions.https.CallableContext): Promise<functions.https.HttpsError | undefined> {
     // if user is not authenticated, he/she must authenticate
     if (!context.auth) {
       throw new functions.https.HttpsError(
@@ -46,4 +47,5 @@ export async function checkRegularUserPermissions(context: functions.https.Calla
         'not logged in as user'
       )
     }
+    return
 }

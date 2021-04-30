@@ -11,7 +11,7 @@ export const addNewChtype = functions.https.onCall(async (chtype: chType, contex
   chtype.description = chtype.description.toLowerCase();
 
   // check if name of type is unique
-  let chtypes = await admin.firestore()
+  const chtypes = await admin.firestore()
     .collection('culturalHeritageTypes')
     .where('name', '==', chtype.name)
     .get();
@@ -41,7 +41,7 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
   chtype.description = chtype.description.toLowerCase();
 
   // check if name of type is unique
-  let chtypes = await admin.firestore()
+  const chtypes = await admin.firestore()
     .collection('culturalHeritageTypes')
     .where('name', '==', chtype.name)
     .get();
@@ -70,7 +70,7 @@ export const editChtype = functions.https.onCall(async (chtype: chType, context)
 
 export const onEditChtype = functions.firestore
   .document('culturalHeritageTypes/{docId}')
-  .onUpdate(async (change, context) => {
+  .onUpdate(async (change ) => {
     const previousValue = change.before.data() as chType;
     const newValue = change.after.data() as chType;
 
@@ -91,7 +91,7 @@ export const onEditChtype = functions.firestore
 
     // create batch 
     // batch is necessary when updating several documents in parallel
-    let batch = admin.firestore().batch();
+    const batch = admin.firestore().batch();
 
     chs.forEach(chDoc => {
       batch.update(chDoc.ref, { 'chtype': newValue })
