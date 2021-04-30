@@ -52,3 +52,9 @@ First, run `cd app/functions`, then run `npm run lint`. Here we can see all of t
 When errors are fixed and `npm run lint` doesn't give any errors or warnings, compile typescript files with `npx tsc`. This is neccessary because compiled files will be deployed, not typescript files. 
 
 After that run `cd app` and then `firebase deploy --only functions`. Now functions should be available in the firebase console.
+
+
+### Auto turn off billing for firebase project
+First, go to Google Cloud Platform -> Billing -> Budgets & alerts -> Create Budget -> Checkbox connect a PubSub topic to this budget -> Save.
+Second, enable Cloud Billing API for a project in GCP.
+Third, write a functions for turning off billing.
