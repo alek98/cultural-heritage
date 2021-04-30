@@ -8,7 +8,7 @@ import { PubSubData } from './models/pubSubData.model'
 const billing = google.cloudbilling('v1').projects
 const PROJECT_ID = process.env.GCLOUD_PROJECT;
 const PROJECT_NAME = `projects/${PROJECT_ID}`;
-const KILL_PROJECT_LIMIT_AMOUNT = 0.1; // if amount is over 10 cents, disable billing
+const KILL_PROJECT_LIMIT_AMOUNT = 2; // if amount is over 2$, disable billing
 
 
 export const getBillingInfo = functions.https.onRequest(async (req, res) => {

@@ -58,3 +58,4 @@ After that run `cd app` and then `firebase deploy --only functions`. Now functio
 First, go to Google Cloud Platform -> Billing -> Budgets & alerts -> Create Budget -> Checkbox connect a PubSub topic to this budget -> Save.
 Second, enable Cloud Billing API for a project in GCP.
 Third, write a functions for turning off billing.
+More info [here](https://cloud.google.com/billing/docs/how-to/notify#cap_disable_billing_to_stop_usage)
