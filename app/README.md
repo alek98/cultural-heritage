@@ -51,4 +51,4 @@ First, run `cd app/functions`, then run `npm run lint`. Here we can see all of t
 
 When errors are fixed and `npm run lint` doesn't give any errors or warnings, compile typescript files with `npx tsc`. This is neccessary because compiled files will be deployed, not typescript files. 
 
-After that run `firebase deploy --only functions`.
+After that run `cd app` and then `firebase deploy --only functions`. Now functions should be available in the firebase console.
