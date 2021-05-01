@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { CulturalHeritage } from 'src/app/models/culturalHeritage.model';
@@ -12,6 +12,7 @@ import { ReviewListComponent } from '../reviews/review-list/review-list.componen
 })
 export class ListLayoutComponent implements OnInit {
   culturalHeritages$: Observable<CulturalHeritage[]>;
+  innerWidth: number;
 
   constructor(
     private culturalHeritageService: CulturalHeritageService,
@@ -20,6 +21,7 @@ export class ListLayoutComponent implements OnInit {
 
   ngOnInit():void {
     this.culturalHeritages$ = this.culturalHeritageService.getCulturalHeritages();
+    this.innerWidth = window.innerWidth
   }
 
   openReviews(selected: CulturalHeritage) {
@@ -28,6 +30,11 @@ export class ListLayoutComponent implements OnInit {
       maxHeight: '90vh',
       data: selected
     })
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
   }
 
 }

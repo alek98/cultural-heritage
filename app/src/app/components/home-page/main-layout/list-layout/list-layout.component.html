@@ -19,7 +19,7 @@
         <!-- footer - reivews(ratings & comments), news, location, chtype -->
         <div class="footer">
 
-          <div class="reviews" (click)="openReviews(ch)">
+          <div [ngClass]="{'reviews': innerWidth > 450}" class="reviews" (click)="openReviews(ch)">
             <div class="rating">
               {{ch.avgRating}}
             </div>
