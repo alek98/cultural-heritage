@@ -11,6 +11,7 @@ This project represents usage of serverless function. Frontend is built using an
 - Hosting
 - PubSub
 
+
 There are different types of cloud functions that are used in this project with firebase SDK:
 - https functions
 - callable functions
