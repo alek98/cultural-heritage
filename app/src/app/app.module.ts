@@ -24,14 +24,18 @@ Otherwise, user will be logged out.
 There is a bug in angularfire which is fixed by delaying auth emulator.
 Use this function only in development environment!
 */ 
-// export function initializeApp1(afa: AngularFireAuth): any {
-//   return () => {
-//     return new Promise<void>(resolve => {
-//       afa.useEmulator(`http://localhost:9099/`);
-//       setTimeout(() => resolve(), 100);
-//     });
-//   };
-// }
+export function initializeApp1(afa: AngularFireAuth) {
+  // if(environment.production) return Promise.resolve();
+  return () => {
+    return new Promise<void>(resolve => {
+      
+      if(environment.production) return resolve()
+
+      afa.useEmulator(`http://localhost:9099/`);
+      setTimeout(() => resolve(), 100);
+    });
+  };
+}
 
 @NgModule({
   declarations: [
@@ -62,14 +66,12 @@ Use this function only in development environment!
     },
     // Delay the app initialization process by 100ms
     // Use this function only in development environment!
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initializeApp1,
-    //   // for some reason this dependency is necessary for this solution to work.
-    //   // Maybe in order to trigger the constructor *before* waiting 100ms?
-    //   deps: [AngularFireAuth],
-    //   multi: true
-    // }
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp1,
+      deps: [AngularFireAuth],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
