@@ -6,7 +6,7 @@
   margin: auto;
   margin-top: 20px;
   padding-bottom: 20px;
-  width: 600px;
+  max-width: 600px;
 }
 .mat-card-title .mat-icon{
   padding-right: 10px;
