@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,12 +9,17 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ToolbarComponent implements OnInit {
   title = 'Cultural Heritage';
-  
+  innerWidth: number;
+
   constructor(
     public auth: AuthService,
     public route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth
   }
-
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
+  }
 }
