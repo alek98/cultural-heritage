@@ -1,5 +1,4 @@
-# Cultural Heriage App
-## Angular & Firebase 🔥
+# Cultural Heritage App
 ![](https://img.shields.io/badge/Angular-E23237?style=&logo=angular&logoColor=white)
 ![](https://img.shields.io/badge/Firebase-FFCA28?style=&logo=firebase&logoColor=white)
 
